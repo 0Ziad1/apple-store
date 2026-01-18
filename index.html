@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple-Store - Premium Stickers Shop</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">
+                <i class="bi bi-apple"></i> Apple-Store
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#shop">Stickers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Sticker sheet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Mugs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center icon-group">
+                        <a href="#" class="nav-icon" id="searchIcon" aria-label="Search" data-bs-toggle="modal" data-bs-target="#searchModal">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </a>
+
+                        <a href="#" class="nav-icon" id="userIcon" aria-label="User" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <a class="btn btn-outline-primary position-relative" href="#cart">
+                            <i class="bi bi-cart3"></i> Cart
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold mb-4">Premium Stickers<br>for Every Style</h1>
+                    <p class="lead mb-4">Discover our amazing collection of high-quality stickers. From fun and quirky
+                        to professional and elegant, we have something for everyone.</p>
+                    <a href="#shop" class="btn btn-primary btn-lg me-3">Shop Now</a>
+                    <a href="#categories" class="btn btn-outline-primary btn-lg">Browse Categories</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="hero-image">
+                        <div class="sticker-showcase">
+                            <div class="sticker sticker-1">🎨</div>
+                            <div class="sticker sticker-2">✨</div>
+                            <div class="sticker sticker-3">🌟</div>
+                            <div class="sticker sticker-4">💫</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section id="categories" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Shop by Category</h2>
+                <p class="text-muted">Find the perfect stickers for your needs</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-card">
+                        <div class="category-icon">🎭</div>
+                        <h4>Funny</h4>
+                        <p class="text-muted">Make people laugh</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-card">
+                        <div class="category-icon">💼</div>
+                        <h4>Business</h4>
+                        <p class="text-muted">Professional designs</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-card">
+                        <div class="category-icon">🎨</div>
+                        <h4>Artistic</h4>
+                        <p class="text-muted">Creative expressions</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="category-card">
+                        <div class="category-icon">🎮</div>
+                        <h4>Gaming</h4>
+                        <p class="text-muted">Level up your style</p>
+                        <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Featured Products</h2>
+                <p class="text-muted">Handpicked stickers just for you</p>
+            </div>
+            <div class="row g-4">
+                <!-- Product 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-badge">New</div>
+                            <div class="sticker-display sticker-display-1">✨</div>
+                        </div>
+                        <div class="product-info">
+                            <h5>Sparkle Pack</h5>
+                            <p class="text-muted">10 Premium Sparkle Stickers</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$9.99</span>
+                                <button class="btn btn-primary btn-sm" onclick="addToCart('Sparkle Pack', 9.99)">
+                                    <i class="bi bi-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="product-badge bg-success">Popular</div>
+                            <div class="sticker-display sticker-display-2">🎨</div>
+                        </div>
+                        <div class="product-info">
+                            <h5>Art Collection</h5>
+                            <p class="text-muted">15 Artistic Design Stickers</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$14.99</span>
+                                <button class="btn btn-primary btn-sm" onclick="addToCart('Art Collection', 14.99)">
+                                    <i class="bi bi-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="sticker-display sticker-display-3">🌟</div>
+                        </div>
+                        <div class="product-info">
+                            <h5>Star Bundle</h5>
+                            <p class="text-muted">20 Star-Themed Stickers</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$12.99</span>
+                                <button class="btn btn-primary btn-sm" onclick="addToCart('Star Bundle', 12.99)">
+                                    <i class="bi bi-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="sticker-display sticker-display-4">💼</div>
+                        </div>
+                        <div class="product-info">
+                            <h5>Professional Pack</h5>
+                            <p class="text-muted">12 Business Stickers</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$11.99</span>
+                                <button class="btn btn-primary btn-sm" onclick="addToCart('Professional Pack', 11.99)">
+                                    <i class="bi bi-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="sticker-display sticker-display-5">🎮</div>
+                        </div>
+                        <div class="product-info">
+                            <h5>Gaming Set</h5>
+                            <p class="text-muted">15 Gaming Themed Stickers</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$13.99</span>
+                                <button class="btn btn-primary btn-sm" onclick="addToCart('Gaming Set', 13.99)">
+                                    <i class="bi bi-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <div class="sticker-display sticker-display-6">🎭</div>
+                        </div>
+                        <div class="product-info">
+                            <h5>Funny Faces</h5>
+                            <p class="text-muted">18 Funny Expression Stickers</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">$10.99</span>
+                                <button class="btn btn-primary btn-sm" onclick="addToCart('Funny Faces', 10.99)">
+                                    <i class="bi bi-cart-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold mb-4">About Apple-Store</h2>
+                    <p class="lead">We're passionate about stickers and believe they're a simple yet powerful way to
+                        express yourself, personalize your belongings, and add a touch of fun to everyday life.</p>
+                    <p>Since our founding, we've been dedicated to creating high-quality, durable stickers that look
+                        great and last long. Our designs are carefully curated to appeal to a wide range of tastes and
+                        styles.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Premium Quality
+                            Materials</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Unique Designs</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Fast Shipping</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> 100% Satisfaction
+                            Guarantee</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="about-image">
+                        <div class="sticker-grid">
+                            <div class="grid-sticker">🎨</div>
+                            <div class="grid-sticker">✨</div>
+                            <div class="grid-sticker">🌟</div>
+                            <div class="grid-sticker">💫</div>
+                            <div class="grid-sticker">🎭</div>
+                            <div class="grid-sticker">🎮</div>
+                            <div class="grid-sticker">💼</div>
+                            <div class="grid-sticker">🚀</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Get in Touch</h2>
+                <p class="text-muted">Have questions? We'd love to hear from you!</p>
+            </div>
+            <div class="row g-5 align-items-center">
+                <!-- Contact Information -->
+                <div class="col-lg-4">
+                    <div class="contact-info-card">
+                        <div class="contact-info-item mb-4">
+                            <div class="contact-icon-wrapper">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <h5 class="mt-3 mb-2">Address</h5>
+                            <p class="text-muted mb-0">123 Sticker Street<br>Design City, DC 12345</p>
+                        </div>
+                        <div class="contact-info-item mb-4">
+                            <div class="contact-icon-wrapper">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <h5 class="mt-3 mb-2">Phone</h5>
+                            <p class="text-muted mb-0">+1 (555) 123-4567</p>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon-wrapper">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <h5 class="mt-3 mb-2">Email</h5>
+                            <p class="text-muted mb-0">info@apple-store.com</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-top">
+                            <h6 class="mb-3">Follow Us</h6>
+                            <div class="social-links-contact">
+                                <a href="#" class="social-link-contact" aria-label="Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="#" class="social-link-contact" aria-label="Instagram">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="#" class="social-link-contact" aria-label="Twitter">
+                                    <i class="bi bi-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link-contact" aria-label="Pinterest">
+                                    <i class="bi bi-pinterest"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Form -->
+                <div class="col-lg-8">
+                    <div class="contact-form-card">
+                        <form id="contactForm">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label fw-semibold">Full Name</label>
+                                    <input type="text" class="form-control form-control-lg" id="name" placeholder="John Doe" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label fw-semibold">Email Address</label>
+                                    <input type="email" class="form-control form-control-lg" id="email" placeholder="john@example.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="subject" class="form-label fw-semibold">Subject</label>
+                                    <input type="text" class="form-control form-control-lg" id="subject" placeholder="How can we help?" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label fw-semibold">Message</label>
+                                    <textarea class="form-control form-control-lg" id="message" rows="6" placeholder="Tell us more about your inquiry..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                                        <i class="bi bi-send-fill me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content search-modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="modal-title text-center mb-4" id="searchModalLabel">Search Products</h3>
+                    <div class="search-container">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control search-input" id="searchInput" placeholder="Search for stickers, products..." autofocus>
+                            <button class="btn btn-primary" type="button" id="searchButton">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                        <div id="searchResults" class="search-results mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content login-modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="text-center mb-4">
+                        <div class="login-icon-wrapper mb-3">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <h3 class="modal-title" id="loginModalLabel">Welcome Back</h3>
+                        <p class="text-muted">Sign in to your account to continue</p>
+                    </div>
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label fw-semibold">Email Address</label>
+                            <input type="email" class="form-control form-control-lg" id="loginEmail" placeholder="Enter your email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label fw-semibold">Password</label>
+                            <input type="password" class="form-control form-control-lg" id="loginPassword" placeholder="Enter your password" required>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="#" class="text-decoration-none">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                        </button>
+                        <div class="text-center">
+                            <p class="text-muted mb-0">Don't have an account? <a href="#" class="text-decoration-none fw-semibold">Sign up</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5><i class="bi bi-apple"></i> Apple-Store</h5>
+                    <p class="text-muted">Your one-stop shop for premium stickers. Express yourself with style!</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-muted text-decoration-none">Home</a></li>
+                        <li><a href="#shop" class="text-muted text-decoration-none">Shop</a></li>
+                        <li><a href="#categories" class="text-muted text-decoration-none">Categories</a></li>
+                        <li><a href="#about" class="text-muted text-decoration-none">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">FAQ</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Shipping</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Returns</a></li>
+                        <li><a href="#contact" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6>Newsletter</h6>
+                    <p class="text-muted">Subscribe to get special offers and updates</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-muted mb-0">&copy; 2024 Apple-Store. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
