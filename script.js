@@ -1,11 +1,10 @@
 // Apple-Store JavaScript
 
-// Cart functionality
 let cart = [];
 let cartCount = 0;
 let cartItemIdCounter = 0;
 
-// Add product to Best Seller section dynamically
+// Add product to Best Seller
 function addProductToBestSeller(product) {
     const container = document.getElementById('bestSellerContainer');
     if (!container) return;
@@ -14,10 +13,10 @@ function addProductToBestSeller(product) {
 
     const productHTML = `
         <div class="col-md-6 col-lg-3">
-            <div class="product-card">
-                <div class="product-image">
+            <div class="product-card border p-2 mb-3">
+                <div class="product-image mb-2">
                     ${product.badge ? `<div class="product-badge ${product.badgeClass || ''}">${product.badge}</div>` : ''}
-                    ${product.image ? `<img src="${product.image}" alt="${product.name}" class="img-fluid">` : `<div class="sticker-display">${product.emoji || '✨'}</div>`}
+                    ${product.image ? `<img src="${product.image}" alt="${product.name}" class="img-fluid">` : `<div class="sticker-display" style="font-size:2rem;height:100px;display:flex;align-items:center;justify-content:center">${product.emoji || '✨'}</div>`}
                 </div>
                 <div class="product-info">
                     <h5>${product.name}</h5>
@@ -54,7 +53,7 @@ function initBestSellerProducts() {
 
 // Add item to cart
 function addToCart(productName, price, quantity = 1, size = '', emoji = '✨') {
-    const item = { id: cartItemIdCounter++, name: productName, price: parseFloat(price.replace('$', '')), quantity, size, emoji };
+    const item = { id: cartItemIdCounter++, name: productName, price: parseFloat(price.toString().replace('$','')), quantity, size, emoji };
     cart.push(item);
     cartCount += quantity;
     updateCartCount();
@@ -111,62 +110,6 @@ function initSmoothScroll() {
     });
 }
 
-// Scroll to top button
-
-
-// Navbar background change on scroll
-window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    if (window.scrollY > 50) {
-        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.backdropFilter = 'blur(10px)';
-    } else {
-        navbar.style.backgroundColor = 'white';
-        navbar.style.backdropFilter = 'none';
-    }
-});
-
-// Animate on scroll
-function animateOnScroll() {
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.product-card, .card').forEach(el => observer.observe(el));
-}
-
-// Search functionality
-function initSearchFunctionality() {
-    const searchInput = document.getElementById('searchInput');
-    const searchButton = document.getElementById('searchButton');
-    const searchResults = document.getElementById('searchResults');
-    const products = [
-        { name: 'Sparkle Pack', category: 'Artistic', price: 9.99 },
-        { name: 'Art Collection', category: 'Artistic', price: 14.99 },
-        { name: 'Star Bundle', category: 'Artistic', price: 12.99 },
-        { name: 'Professional Pack', category: 'Business', price: 11.99 },
-        { name: 'Gaming Set', category: 'Gaming', price: 13.99 },
-        { name: 'Funny Faces', category: 'Funny', price: 10.99 }
-    ];
-
-    function performSearch(query) {
-        if (!query.trim()) { searchResults.innerHTML = ''; return; }
-        const filtered = products.filter(p => p.name.toLowerCase().includes(query.toLowerCase()) || p.category.toLowerCase().includes(query.toLowerCase()));
-        searchResults.innerHTML = filtered.length
-            ? filtered.map(p => `<div class="search-result-item" onclick="window.location.href='#shop'"><div class="d-flex justify-content-between align-items-center"><div><h6 class="mb-1">${p.name}</h6><small class="text-muted">${p.category}</small></div><span class="text-primary fw-bold">$${p.price}</span></div></div>`).join('')
-            : `<div class="text-center text-muted py-4"><i class="bi bi-search fs-1 mb-2"></i><p>No products found matching "${query}"</p></div>`;
-    }
-
-    searchInput?.addEventListener('input', e => performSearch(e.target.value));
-    searchButton?.addEventListener('click', () => performSearch(searchInput.value));
-    searchInput?.addEventListener('keypress', e => { if (e.key === 'Enter') { e.preventDefault(); performSearch(searchInput.value); } });
-}
-
 // Product options modal
 function initProductOptions() {
     document.addEventListener('click', e => {
@@ -192,40 +135,54 @@ function initProductOptions() {
 
 function openProductOptionsModal(btn) {
     const name = btn.dataset.productName;
-    const price = parseFloat(btn.dataset.productPrice.replace('$', ''));
+    const price = parseFloat(btn.dataset.productPrice.replace('$',''));
     const desc = btn.dataset.productDescription;
     const emoji = btn.dataset.productEmoji;
     const image = btn.dataset.productImage;
 
-    document.getElementById('productOptionsModalLabel').textContent = name;
-    document.getElementById('productOptionsDescription').textContent = desc;
-    document.getElementById('productOptionsPrice').textContent = btn.dataset.productPrice;
-    document.getElementById('productOptionsName').value = name;
-    document.getElementById('productOptionsBasePrice').value = price;
+    const modalLabel = document.getElementById('productOptionsModalLabel');
+    const modalDesc = document.getElementById('productOptionsDescription');
+    const modalPrice = document.getElementById('productOptionsPrice');
+    const modalName = document.getElementById('productOptionsName');
+    const modalBasePrice = document.getElementById('productOptionsBasePrice');
+    const modalImage = document.getElementById('productOptionsImage');
 
-    const imgContainer = document.getElementById('productOptionsImage');
-    imgContainer.innerHTML = image ? `<img src="${image}" alt="${name}" class="img-fluid rounded">` : `<div class="sticker-display-large">${emoji}</div>`;
-    document.getElementById('productSize').value = '';
-    document.getElementById('productQuantity').value = 1;
+    if (modalLabel) modalLabel.textContent = name;
+    if (modalDesc) modalDesc.textContent = desc;
+    if (modalPrice) modalPrice.textContent = btn.dataset.productPrice;
+    if (modalName) modalName.value = name;
+    if (modalBasePrice) modalBasePrice.value = price;
+
+    if (modalImage) modalImage.innerHTML = image ? `<img src="${image}" alt="${name}" class="img-fluid rounded">` : `<div class="sticker-display-large" style="font-size:4rem;height:150px;display:flex;align-items:center;justify-content:center">${emoji}</div>`;
+
+    const sizeInput = document.getElementById('productSize');
+    if (sizeInput) sizeInput.value = '';
+
+    const qtyInput = document.getElementById('productQuantity');
+    if (qtyInput) qtyInput.value = 1;
 
     new bootstrap.Modal(document.getElementById('productOptionsModal')).show();
 }
 
-// Cart modal
-function initCartModal() {
-    const cartModal = document.getElementById('cartModal');
-    cartModal?.addEventListener('shown.bs.modal', () => { renderCartItems(); updateCartSummary(); });
-    document.getElementById('checkoutButton')?.addEventListener('click', () => { if (cart.length > 0) showNotification('Proceeding to checkout...'); });
-}
+// Initialize everything
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    initSmoothScroll();
+    initBestSellerProducts(); // products must be initialized first
+    initProductOptions();     // then modal listener
+});
 
-// Render cart items
 function renderCartItems() {
     const container = document.getElementById('cartItemsContainer');
     const summary = document.getElementById('cartSummary');
-    if (!container) return;
+    if (!container) return; // <-- prevent empty modal error
 
     if (!cart.length) {
-        container.innerHTML = `<div class="empty-cart text-center py-5"><i class="bi bi-cart-x" style="font-size:4rem;color:#ccc;"></i><p class="text-muted mt-3">Your cart is empty</p><a href="#shop" class="btn btn-primary mt-2" data-bs-dismiss="modal">Continue Shopping</a></div>`;
+        container.innerHTML = `<div class="empty-cart text-center py-5">
+            <i class="bi bi-cart-x" style="font-size:4rem;color:#ccc;"></i>
+            <p class="text-muted mt-3">Your cart is empty</p>
+            <a href="#shop" class="btn btn-primary mt-2" data-bs-dismiss="modal">Continue Shopping</a>
+        </div>`;
         if (summary) summary.style.display = 'none';
         return;
     }
@@ -251,61 +208,3 @@ function renderCartItems() {
     `).join('');
     if (summary) summary.style.display = 'block';
 }
-
-// Cart update functions
-function updateCartItemQuantity(id, change) {
-    const item = cart.find(i => i.id === id);
-    if (!item) return;
-    const newQty = item.quantity + change;
-    if (newQty < 1) { removeCartItem(id); return; }
-    if (newQty > 99) return;
-    cartCount += change;
-    item.quantity = newQty;
-    updateCartCount(); renderCartItems(); updateCartSummary();
-}
-
-function updateCartItemQuantityFromInput(id, value) {
-    const item = cart.find(i => i.id === id);
-    if (!item) return;
-    const newQty = parseInt(value) || 1;
-    if (newQty < 1 || newQty > 99) { renderCartItems(); return; }
-    cartCount += newQty - item.quantity;
-    item.quantity = newQty;
-    updateCartCount(); renderCartItems(); updateCartSummary();
-}
-
-function removeCartItem(id) {
-    const index = cart.findIndex(i => i.id === id);
-    if (index === -1) return;
-    cartCount -= cart[index].quantity;
-    cart.splice(index, 1);
-    updateCartCount(); renderCartItems(); updateCartSummary(); showNotification('Item removed from cart');
-}
-
-function updateCartSummary() {
-    const subtotalEl = document.getElementById('cartSubtotal');
-    const totalEl = document.getElementById('cartTotal');
-    if (!subtotalEl || !totalEl) return;
-    const subtotal = cart.reduce((sum,i)=>sum+i.price*i.quantity,0);
-    subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-    totalEl.textContent = `$${subtotal.toFixed(2)}`;
-}
-
-// Add CSS animations dynamically
-const style = document.createElement('style');
-style.textContent = `
-@keyframes slideIn {from{transform:translateX(400px);opacity:0;}to{transform:translateX(0);opacity:1;}}
-@keyframes slideOut {from{transform:translateX(0);opacity:1;}to{transform:translateX(400px);opacity:0;}}
-`;
-document.head.appendChild(style);
-
-// Initialize everything
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
-    initSmoothScroll();
-    animateOnScroll();
-    initSearchFunctionality();
-    initBestSellerProducts();
-    initProductOptions();
-    initCartModal();
-});
