@@ -29,7 +29,7 @@ html {
 }
 
 /* ===================== Navbar ===================== */
-/* Logo */
+/* ===================== Logo ===================== */
 .logo-img {
     width: 110px;
     height: 110px;
@@ -37,40 +37,47 @@ html {
     border-radius: 50%;
 }
 
-/* Desktop navbar spacing */
+/* ===================== Desktop Spacing ===================== */
 .navbar-nav .nav-link {
-    margin: 0 0.9rem;
+    margin: 0 1.7rem;
 }
 
-/* Mobile-specific */
+.nav-icon {
+    margin: 0 0.9rem; /* tighter spacing */
+    size: 2px;
+}
+
+/* ===================== Mobile Styles ===================== */
 @media (max-width: 991px) {
-
-    /* Top row: toggler, logo, icons */
+    /* Flex container */
     .navbar .container {
-        position: relative;
+        display: flex;
+        align-items: center;
         justify-content: space-between;
+        position: relative;
+        padding: 0 0.5rem;
     }
 
-    .navbar-brand {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1100;
-    }
-
+    /* Toggler on left */
     .navbar-toggler {
         order: 1;
         z-index: 1100;
+        margin-right: 0.3rem;
     }
 
-    .icon-group {
-        order: 3;
+    /* Logo centered */
+    .navbar-brand {
+        order: 2;
+        position: static;
+        margin: 0 auto;
         z-index: 1100;
+        width: auto;
     }
 
-    /* Collapse menu full screen */
+    /* Collapse menu after logo */
     #navbarNav {
-        position: fixed; /* full screen overlay */
+        order: 3;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -86,7 +93,7 @@ html {
     }
 
     #navbarNav.show {
-        transform: translateX(0); /* slide in */
+        transform: translateX(0);
     }
 
     /* Menu items stacked vertically */
@@ -96,15 +103,28 @@ html {
     }
 
     .navbar-nav .nav-link {
-        padding: 1rem 0;
-        font-size: 1.5rem;
+        padding: 0.5rem 0;
+        font-size: 1.3rem;
     }
-    
+
+    /* Icons on far right */
+    .icon-group {
+        order: 4;
+        display: flex;
+        gap: 0.3rem;
+        position: relative;
+        right: 0;
+        z-index: 1100;
+    }
+
+    /* Logo size for mobile */
     .logo-img {
-        width: 60px;   /* smaller size */
-        height: 60px;
+        width: 50px;
+        height: 50px;
+        margin: 0 0.3rem;
     }
 }
+
 
 /* ===================== Hero Section ===================== */
 .hero-section {
@@ -343,6 +363,11 @@ html {
     .btn-lg {
         padding: 0.5rem 1rem;
         font-size: 1rem;
+    }
+        .choose-options-btn {
+        font-size: 0.8rem;   /* smaller text */
+        padding: 0.25rem 0.5rem; /* smaller height */
+        margin: 0 0.5rem;
     }
 }
 
