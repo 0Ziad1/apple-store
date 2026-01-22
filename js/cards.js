@@ -21,6 +21,7 @@ function capitalize(str) {
 
 // Display products dynamically
 function displayProducts(products) {
+    const productContainer = document.getElementById('bestSellerContainer');
     productContainer.innerHTML = '';
 
     if (products.length === 0) {
@@ -30,7 +31,7 @@ function displayProducts(products) {
 
     products.forEach(product => {
         const col = document.createElement('div');
-        col.className = 'col-md-4 col-lg-3';
+        col.className = 'col-6 col-md-4 col-lg-3'; // ✅ Two per row on mobile
         col.innerHTML = `
             <div class="card h-100 shadow-sm">
                 <div class="card-body d-flex flex-column">
@@ -49,6 +50,8 @@ function displayProducts(products) {
         productContainer.appendChild(col);
     });
 }
+
+
 
 // Initialize display
 displayProducts(filteredProducts);
