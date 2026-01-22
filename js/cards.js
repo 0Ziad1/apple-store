@@ -1,6 +1,4 @@
-const productContainer = document.getElementById('productContainer');
-const categoryTitle = document.getElementById('categoryTitle');
-const pagination = document.getElementById('pagination');
+
 
 const urlParams = new URLSearchParams(window.location.search);
 const selectedCategory = urlParams.get('cat') || 'all';
@@ -58,6 +56,7 @@ function displayProducts(products) {
         productContainer.appendChild(col);
     });
 }
+
 
 
 

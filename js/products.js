@@ -58,14 +58,9 @@ const bestSellers = [
 // ===== Display Best Sellers =====
 function displayBestSellers(products) {
     const container = document.getElementById('bestSellerContainer');
-    if (!container) return;
+    if (!container) return; // <-- IMPORTANT
 
     container.innerHTML = '';
-    if (!products.length) {
-        container.innerHTML = `<p class="text-center text-muted">No best sellers available.</p>`;
-        return;
-    }
-
     products.forEach(product => {
         const col = document.createElement('div');
         col.className = 'col-6 col-md-4 col-lg-3';
@@ -77,7 +72,8 @@ function displayBestSellers(products) {
                     <p class="card-text text-center text-muted">${product.description}</p>
                     <div class="mt-auto d-flex justify-content-between align-items-center">
                         <span class="fw-bold">$${product.price.toFixed(2)}</span>
-                        <button class="btn btn-primary btn-sm" onclick="openProductOptions('${product.name}')">Add</button>
+                        <button class="btn btn-primary btn-sm"
+                            onclick="openProductOptions('${product.name}')">Add</button>
                     </div>
                 </div>
             </div>
@@ -85,6 +81,11 @@ function displayBestSellers(products) {
         container.appendChild(col);
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayBestSellers(bestSellers);
+});
+
 
 // ===== Product Modal =====
 function openProductOptions(productName) {
@@ -186,5 +187,6 @@ function renderPagination() {
 // ===== Initialize =====
 document.addEventListener('DOMContentLoaded', () => {
     displayBestSellers(bestSellers);
+    
     renderProductsPage();
 });
