@@ -554,3 +554,6 @@
 html {
     scroll-behavior: smooth;
 }   
+select.form-control {
+  cursor: pointer;
+}
