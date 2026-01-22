@@ -488,3 +488,11 @@
             height: 50vh; /* even smaller on small phones */
         }
     }
+    @media (max-width: 575px) {
+    #bestSellerContainer > div {
+        width: 50%;
+        float: left;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+}
