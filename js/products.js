@@ -138,7 +138,7 @@ function renderProductsPage() {
         col.innerHTML = `
             <div class="card h-100 shadow-sm">
                 <div class="card-body d-flex flex-column">
-                    <div class="product-emoji fs-1 text-center mb-3">${product.emoji}</div>
+                    <div class="product-image fs-1 text-center mb-3"  style="background-image: url(${product.url});"></div>
                     <h5 class="card-title text-center">${product.name}</h5>
                     <p class="card-text text-center text-muted">${product.description}</p>
                     <div class="mt-auto d-flex justify-content-between align-items-center">
