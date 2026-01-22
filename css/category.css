@@ -1,0 +1,9 @@
+.fa-magnifying-glass:hover,
+.fa-user:hover {
+    transform: scale(1.1);
+}
+.fa-magnifying-glass,
+.fa-user {
+    transition: transform 0.2s ease;
+    color: #76b852;
+}
