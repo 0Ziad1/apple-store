@@ -1,0 +1,9 @@
+.product-image{
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 230px;
+    transition: transform 0.3s ease;
+}
+.product-image:hover{
+    transform: scale(1.01);
+}

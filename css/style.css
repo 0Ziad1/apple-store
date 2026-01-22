@@ -301,6 +301,7 @@
     Hover Disabled on Touch
     =========================== */
     @media (hover: none) and (pointer: coarse) {
+
         .product-card:hover,
         .btn:hover,
         .navbar-nav .nav-link:hover {
@@ -324,8 +325,10 @@
         border-radius: 12px;
         overflow: hidden;
         padding: 1rem;
-        width: 100%;               /* important: fills the Bootstrap column */
-        box-sizing: border-box;    /* ensures padding doesn't break layout */
+        width: 100%;
+        /* important: fills the Bootstrap column */
+        box-sizing: border-box;
+        /* ensures padding doesn't break layout */
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         display: flex;
         flex-direction: column;
@@ -345,7 +348,7 @@
     Responsive Columns Fix
     =========================== */
     @media (max-width: 575px) {
-        #bestSellerContainer > .col-6 {
+        #bestSellerContainer>.col-6 {
             padding-left: 0.25rem;
             padding-right: 0.25rem;
         }
@@ -470,138 +473,160 @@
     .navbar.bg-white {
         background-color: #eff9e4 !important;
     }
-    
-#first-section {
-    position: relative;
-    background-image: url("../assets/Copilot_20260122_175027.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.hero-center {
-    text-align: center;
-    background: rgba(0, 0, 0, 0.45);
-    padding: 2rem 2.5rem;
-    border-radius: 18px;
-    color: #fff;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.hero-center h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 0.6rem;
-}
-
-.hero-center p {
-    font-size: 1.05rem;
-    opacity: 0.9;
-    margin-bottom: 1.2rem;
-}
-
-.hero-btn {
-    display: inline-block;
-    padding: 0.6rem 1.8rem;
-    border-radius: 30px;
-    background: #A5C89E;
-    color: #fff;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.hero-btn:hover {
-    background: #76b852;
-    transform: translateY(-2px);
-}
-
-    @media (max-width: 768px) {
     #first-section {
-        height: 60vh;
+        position: relative;
+        background-image: url("../assets/Copilot_20260122_175027.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 70vh;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 
-    .hero-content {
-        margin-left: 0;
+    .hero-center {
         text-align: center;
+        background: rgba(0, 0, 0, 0.45);
+        padding: 2rem 2.5rem;
+        border-radius: 18px;
+        color: #fff;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
+
+    .hero-center h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 0.6rem;
+    }
+
+    .hero-center p {
+        font-size: 1.05rem;
+        opacity: 0.9;
+        margin-bottom: 1.2rem;
+    }
+
+    .hero-btn {
+        display: inline-block;
+        padding: 0.6rem 1.8rem;
+        border-radius: 30px;
+        background: #A5C89E;
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .hero-btn:hover {
+        background: #76b852;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        #first-section {
+            height: 60vh;
+            justify-content: center;
+        }
+
+        .hero-content {
+            margin-left: 0;
+            text-align: center;
+        }
     }
 
     @media (max-width: 480px) {
         #first-section {
-            height: 50vh; /* even smaller on small phones */
+            height: 50vh;
+            /* even smaller on small phones */
         }
     }
+
     @media (max-width: 575px) {
-    #bestSellerContainer > div {
-        width: 50%;
-        float: left;
-        padding-left: 0.25rem;
-        padding-right: 0.25rem;
+        #bestSellerContainer>div {
+            width: 50%;
+            float: left;
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+        }
     }
-}
-#contact {
-    scroll-margin-top: 80px;
-}   
-html {
-    scroll-behavior: smooth;
-}   
-select.form-control {
-  cursor: pointer;
-}
 
-/* Shop by Category Cards */
-#shopByCategory .category-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    background-color: #fff;
-}
+    #contact {
+        scroll-margin-top: 80px;
+    }
 
-#shopByCategory .category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+    html {
+        scroll-behavior: smooth;
+    }
 
-/* Pagination container */
-#pagination {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    padding: 0;
-    margin: 20px 0;
-}
+    select.form-control {
+        cursor: pointer;
+    }
 
-/* Page numbers */
-#pagination .page-item {
-    display: inline-block;
-}
+    /* Shop by Category Cards */
+    #shopByCategory .category-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        background-color: #fff;
+    }
 
-#pagination .page-link {
-    display: block;
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    color: #007bff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-}
+    #shopByCategory .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
 
-#pagination .page-link:hover {
-    background-color: #f0f0f0;
-}
+    /* Pagination container */
+    #pagination {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        padding: 0;
+        margin: 20px 0;
+    }
 
-#pagination .page-item.active .page-link {
-    background-color: #76b852;
-    color: #fff;
-    border-color: #76b852;
-}
+    /* Page numbers */
+    #pagination .page-item {
+        display: inline-block;
+    }
+
+    #pagination .page-link {
+        display: block;
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.2s;
+    }
+
+    #pagination .page-link:hover {
+        background-color: #f0f0f0;
+    }
+
+    #pagination .page-item.active .page-link {
+        background-color: #76b852;
+        color: #fff;
+        border-color: #76b852;
+    }
+
+    #bestSeller {
+        background-color: #eff9e4 !important;
+    }
+
+    #bestSeller .card-body {
+        background-color: #f8f9fa;
+    }
+
+    .footer-social i {
+        color: #76b852;
+        font-size: 20px;
+    }
+
+    #contact i {
+        color: #76b852;
+    }
