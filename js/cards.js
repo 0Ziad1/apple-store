@@ -1,89 +1,54 @@
-// ======= allProducts (test data) =======
-const allProducts = [
-    { name:'Sparkle Pack', description:'10 Premium Sparkle Stickers', price:'$9.99', emoji:'✨', category:'cute', badge:'Hot', badgeClass:'bg-danger' },
-    { name:'Art Collection', description:'15 Artistic Design Stickers', price:'$14.99', emoji:'🎨', category:'art', badge:'Popular', badgeClass:'bg-success' },
-    { name:'Star Bundle', description:'20 Star-Themed Stickers', price:'$12.99', emoji:'🌟', category:'cute', badge:'New' },
-    { name:'Professional Pack', description:'12 Business Stickers', price:'$11.99', emoji:'💼', category:'business', badge:'Trending', badgeClass:'bg-warning' },
-    { name:'Football Pack', description:'Football Stickers', price:'$13.99', emoji:'⚽', category:'football' },
-    { name:'Anime Pack', description:'Anime Stickers', price:'$15.99', emoji:'🧑‍🎤', category:'anime' }
-];
+const productContainer = document.getElementById('productContainer');
+const categoryTitle = document.getElementById('categoryTitle');
+const pagination = document.getElementById('pagination');
 
-// ======= General render function (from main JS) =======
-function renderProductCards(products, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    container.innerHTML = '';
+const urlParams = new URLSearchParams(window.location.search);
+const selectedCategory = urlParams.get('cat') || 'all';
+
+// Filter products by category
+let filteredProducts = allProducts;
+if (selectedCategory !== 'all') {
+    filteredProducts = allProducts.filter(p => p.category.toLowerCase() === selectedCategory.toLowerCase());
+}
+
+// Update page title dynamically
+categoryTitle.textContent = selectedCategory ? `${capitalize(selectedCategory)} Stickers` : 'All Products';
+
+// Function to capitalize first letter
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Display products dynamically
+function displayProducts(products) {
+    productContainer.innerHTML = '';
+
+    if (products.length === 0) {
+        productContainer.innerHTML = `<p class="text-center text-muted">No products found in this category.</p>`;
+        return;
+    }
 
     products.forEach(product => {
-        container.insertAdjacentHTML('beforeend', `
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="product-card">
-                    <div class="product-image">
-                        ${product.badge ? `<div class="product-badge ${product.badgeClass || ''}">${product.badge}</div>` : ''}
-                        ${product.emoji ? `<div class="sticker-display">${product.emoji}</div>` : `<img src="${product.image || ''}" alt="${product.name}">`}
-                    </div>
-                    <div class="product-info">
-                        <h5>${product.name}</h5>
-                        ${product.description ? `<p class="text-muted">${product.description}</p>` : ''}
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="price">${product.price}</span>
-                            <button class="btn btn-primary btn-sm choose-options-btn"
-                                data-product-name="${product.name}"
-                                data-product-price="${product.price}"
-                                data-product-description="${product.description}"
-                                data-product-emoji="${product.emoji}">
-                                Choose options
-                            </button>
-                        </div>
+        const col = document.createElement('div');
+        col.className = 'col-md-4 col-lg-3';
+        col.innerHTML = `
+            <div class="card h-100 shadow-sm">
+                <div class="card-body d-flex flex-column">
+                    <div class="product-emoji fs-1 text-center mb-3">${product.emoji}</div>
+                    <h5 class="card-title text-center">${product.name}</h5>
+                    <p class="card-text text-center text-muted">${product.description}</p>
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                        <span class="fw-bold">$${product.price.toFixed(2)}</span>
+                        <button class="btn btn-primary btn-sm" onclick="openProductOptions('${product.name}')">
+                            Add
+                        </button>
                     </div>
                 </div>
             </div>
-        `);
+        `;
+        productContainer.appendChild(col);
     });
 }
 
-// ======= Category page specific =======
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const activeCategory = params.get('cat');
-
-    // Filter products by category if ?cat exists
-    const productsToShow = activeCategory
-        ? allProducts.filter(p => p.category === activeCategory)
-        : allProducts;
-
-    // Update page title
-    const title = document.getElementById('categoryTitle');
-    if (title) {
-        title.textContent = activeCategory
-            ? activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1) + ' Stickers'
-            : 'All Stickers';
-    }
-
-    // Render product cards
-    renderProductCards(productsToShow, 'productContainer');
-
-    // Initialize product options buttons
-    document.addEventListener('click', e => {
-        const btn = e.target.closest('.choose-options-btn');
-        if (!btn) return;
-
-        openProductOptionsModal(btn);
-    });
-
-    // Handle product options form submission
-    const form = document.getElementById('productOptionsForm');
-    form?.addEventListener('submit', e => {
-        e.preventDefault();
-        const name = productOptionsName.value;
-        const price = productOptionsBasePrice.value;
-        const size = productSize.value;
-        const qty = parseInt(productQuantity.value) || 1;
-
-        if (!size) return showNotification('Select size');
-
-        addToCart(`${name} (${size})`, price, qty);
-        bootstrap.Modal.getInstance(productOptionsModal).hide();
-        form.reset();
-    });
-});
+// Initialize display
+displayProducts(filteredProducts);
