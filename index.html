@@ -41,7 +41,7 @@
             Stickers
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="pages/category.html">Football</a></li>
+            <li><a class="dropdown-item" href="pages/category.html?cat=Football">Football</a></li>
             <li><a class="dropdown-item" href="pages/category.html?cat=anime">Anime</a></li>
             <li><a class="dropdown-item" href="pages/category.html?cat=cute">Cute</a></li>
             <li><a class="dropdown-item" href="pages/category.html?cat=funny">Funny</a></li>
@@ -96,16 +96,61 @@
 
 
     <!-- Best Seller This Week Section -->
-    <section id="bestSeller" class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold">Best Seller This Week</h2>
+<section id="bestSeller" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Best Seller This Week</h2>
+        </div>
+        <div class="row g-4" id="bestSellerContainer">
+            <!-- Best sellers will be inserted here dynamically -->
+        </div>
+    </div>
+</section>
+
+    <!-- Shop By Category Section -->
+<section id="shopByCategory" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">Shop by Category</h2>
+            <p class="text-muted">Explore our stickers, sheets, mugs, and more</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <a href="pages/category.html?cat=football" class="text-decoration-none">
+                    <div class="category-card text-center p-3 border rounded hover-shadow">
+                        <img src="assets/Copilot_20260122_175027.png" alt="Football Stickers" class="img-fluid mb-2 rounded">
+                        <h5 class="mb-0 text-dark">Football</h5>
+                    </div>
+                </a>
             </div>
-            <div class="row g-4" id="bestSellerContainer">
-                <!-- Empty product divs - can be populated dynamically -->
+            <div class="col-6 col-md-3">
+                <a href="pages/category.html?cat=anime" class="text-decoration-none">
+                    <div class="category-card text-center p-3 border rounded hover-shadow">
+                        <img src="assets/Copilot_20260122_175027.png" alt="Anime Stickers" class="img-fluid mb-2 rounded">
+                        <h5 class="mb-0 text-dark">Anime</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="pages/category.html?cat=cute" class="text-decoration-none">
+                    <div class="category-card text-center p-3 border rounded hover-shadow">
+                        <img src="assets/Copilot_20260122_175027.png" alt="Cute Stickers" class="img-fluid mb-2 rounded">
+                        <h5 class="mb-0 text-dark">Cute</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a href="pages/category.html?cat=funny" class="text-decoration-none">
+                    <div class="category-card text-center p-3 border rounded hover-shadow">
+                        <img src="assets/Copilot_20260122_175027.png" alt="Funny Stickers" class="img-fluid mb-2 rounded">
+                        <h5 class="mb-0 text-dark">Funny</h5>
+                    </div>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
 
 
