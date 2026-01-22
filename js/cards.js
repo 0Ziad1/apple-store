@@ -11,8 +11,16 @@ if (selectedCategory !== 'all') {
     filteredProducts = allProducts.filter(p => p.category.toLowerCase() === selectedCategory.toLowerCase());
 }
 
-// Update page title dynamically
-categoryTitle.textContent = selectedCategory ? `${capitalize(selectedCategory)} Stickers` : 'All Products';
+if (selectedCategory) {
+    if (selectedCategory.toLowerCase() === 'mugs') {
+        categoryTitle.textContent = 'Mugs';
+    } else {
+        categoryTitle.textContent = `${capitalize(selectedCategory)} Stickers`;
+    }
+} else {
+    categoryTitle.textContent = 'All Products';
+}
+
 
 // Function to capitalize first letter
 function capitalize(str) {

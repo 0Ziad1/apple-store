@@ -470,17 +470,69 @@
     .navbar.bg-white {
         background-color: #eff9e4 !important;
     }
-    #first-section {
-        background-image: url("/assets/background-identity.png");
-        background-size: contain;
-        background-repeat: repeat-x;
-        width: 100% !important;
-        height: 300px !important;
-    }
+    
+#first-section {
+    position: relative;
+    background-image: url("../assets/Copilot_20260122_175027.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-center {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 2rem 2.5rem;
+    border-radius: 18px;
+    color: #fff;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.hero-center h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 0.6rem;
+}
+
+.hero-center p {
+    font-size: 1.05rem;
+    opacity: 0.9;
+    margin-bottom: 1.2rem;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 0.6rem 1.8rem;
+    border-radius: 30px;
+    background: #A5C89E;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    background: #76b852;
+    transform: translateY(-2px);
+}
+
     @media (max-width: 768px) {
-        #first-section {
-            height: 60vh; /* slightly smaller on mobile */
-        }
+    #first-section {
+        height: 60vh;
+        justify-content: center;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        text-align: center;
+    }
     }
 
     @media (max-width: 480px) {
@@ -496,3 +548,9 @@
         padding-right: 0.25rem;
     }
 }
+#contact {
+    scroll-margin-top: 80px;
+}   
+html {
+    scroll-behavior: smooth;
+}   

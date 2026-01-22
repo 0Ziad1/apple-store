@@ -1,148 +1,148 @@
-// Get cart from localStorage
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Elements
 const checkoutItems = document.getElementById('checkoutItems');
-const checkoutTotal = document.getElementById('checkoutTotal');
-const cartCountEl = document.querySelector('.cart-count');
-const cartModalContainer = document.getElementById('cartItemsContainer');
+const subtotalEl = document.getElementById('subtotal');
+const shippingEl = document.getElementById('shipping');
+const totalEl = document.getElementById('total');
+
+const cartItemsEl = document.getElementById('cartItems');
 const cartTotalEl = document.getElementById('cartTotal');
-const checkoutBtn = document.getElementById('checkoutButton');
+
+const placeOrderBtn = document.getElementById('placeOrder');
+const orderMsg = document.getElementById('orderMsg');
+
+const visaRadio = document.getElementById('pmVisa');
+const codRadio = document.getElementById('pmCod');
+const visaFields = document.getElementById('visaFields');
+const codNote = document.getElementById('codNote');
 
 // ----------------------
-// Update navbar cart badge
-function updateCartCount() {
-    if (!cartCountEl) return;
-    const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCountEl.textContent = totalQty;
-    cartCountEl.style.display = totalQty ? 'inline-block' : 'none';
+function getSubtotal() {
+    return cart.reduce((s, i) => s + i.price * i.quantity, 0);
 }
 
 // ----------------------
-// Render checkout items (main checkout page)
+function getShipping() {
+    return codRadio.checked ? 8 : 0;
+}
+
+// ----------------------
 function renderCheckout() {
     if (!checkoutItems) return;
+
     checkoutItems.innerHTML = '';
 
     if (!cart.length) {
-        checkoutItems.innerHTML = `<p class="text-center text-muted py-5">Your cart is empty.</p>`;
-        checkoutTotal.textContent = '$0.00';
+        checkoutItems.innerHTML =
+            `<p class="text-center text-muted py-4">Your cart is empty.</p>`;
+        subtotalEl.textContent = '$0.00';
+        shippingEl.textContent = 'Free';
+        totalEl.textContent = '$0.00';
         return;
     }
 
-    let total = 0;
     cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-
         checkoutItems.insertAdjacentHTML('beforeend', `
-            <div class="d-flex justify-content-between mb-2">
-                <div>${item.emoji} ${item.name} (${item.size || 'N/A'}) x${item.quantity}</div>
-                <strong>$${itemTotal.toFixed(2)}</strong>
+            <div class="d-flex justify-content-between">
+                <div>${item.emoji} ${item.name} (${item.size || 'N/A'}) × ${item.quantity}</div>
+                <strong>$${(item.price * item.quantity).toFixed(2)}</strong>
             </div>
         `);
     });
 
-    checkoutTotal.textContent = `$${total.toFixed(2)}`;
+    const subtotal = getSubtotal();
+    const shipping = getShipping();
+
+    subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+    shippingEl.textContent = shipping ? `$${shipping.toFixed(2)}` : 'Free';
+    totalEl.textContent = `$${(subtotal + shipping).toFixed(2)}`;
 }
 
 // ----------------------
-// Render cart modal
-function renderCartModal() {
-    if (!cartModalContainer) return;
-    cartModalContainer.innerHTML = '';
+function renderCartOffcanvas() {
+    if (!cartItemsEl) return;
+
+    cartItemsEl.innerHTML = '';
+    let total = 0;
 
     if (!cart.length) {
-        cartModalContainer.innerHTML = `<div class="text-center py-5 text-muted">
-            <i class="bi bi-cart-x" style="font-size: 4rem; color: #ccc;"></i>
-            <p class="mt-3">Your cart is empty</p>
-        </div>`;
-        if (cartTotalEl) cartTotalEl.textContent = '$0.00';
+        cartItemsEl.innerHTML =
+            `<p class="text-center text-muted py-4">Your cart is empty.</p>`;
+        cartTotalEl.textContent = '$0.00';
         return;
     }
 
-    let total = 0;
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
         total += itemTotal;
 
-        cartModalContainer.insertAdjacentHTML('beforeend', `
-            <div class="d-flex justify-content-between align-items-center mb-3" data-id="${item.id}">
-                <div>${item.emoji} ${item.name} (${item.size}) x${item.quantity}</div>
-                <div class="d-flex align-items-center gap-2">
-                    <button class="btn btn-sm btn-outline-secondary decreaseQty">-</button>
-                    <span>${item.quantity}</span>
-                    <button class="btn btn-sm btn-outline-secondary increaseQty">+</button>
-                    <strong class="ms-2">$${itemTotal.toFixed(2)}</strong>
-                    <button class="btn btn-sm btn-danger ms-2 removeItem">&times;</button>
+        cartItemsEl.insertAdjacentHTML('beforeend', `
+            <div class="d-flex justify-content-between align-items-center" data-id="${item.id}">
+                <div>${item.emoji} ${item.name} × ${item.quantity}</div>
+                <div class="d-flex gap-2 align-items-center">
+                    <button class="btn btn-sm btn-outline-secondary decrease">-</button>
+                    <button class="btn btn-sm btn-outline-secondary increase">+</button>
+                    <strong>$${itemTotal.toFixed(2)}</strong>
+                    <button class="btn btn-sm btn-danger remove">&times;</button>
                 </div>
             </div>
         `);
     });
 
-    if (cartTotalEl) cartTotalEl.textContent = `$${total.toFixed(2)}`;
+    cartTotalEl.textContent = `$${total.toFixed(2)}`;
 
-    // Add event listeners for increase/decrease/remove
-    cartModalContainer.querySelectorAll('.removeItem').forEach(btn => {
-        btn.addEventListener('click', e => {
-            const id = Number(e.target.closest('[data-id]').dataset.id);
-            removeCartItem(id);
-        });
-    });
-
-    cartModalContainer.querySelectorAll('.increaseQty').forEach(btn => {
-        btn.addEventListener('click', e => {
-            const id = Number(e.target.closest('[data-id]').dataset.id);
-            changeQuantity(id, 1);
-        });
-    });
-
-    cartModalContainer.querySelectorAll('.decreaseQty').forEach(btn => {
-        btn.addEventListener('click', e => {
-            const id = Number(e.target.closest('[data-id]').dataset.id);
-            changeQuantity(id, -1);
-        });
-    });
+    cartItemsEl.querySelectorAll('.remove').forEach(b =>
+        b.onclick = e => updateQty(e, 0, true)
+    );
+    cartItemsEl.querySelectorAll('.increase').forEach(b =>
+        b.onclick = e => updateQty(e, 1)
+    );
+    cartItemsEl.querySelectorAll('.decrease').forEach(b =>
+        b.onclick = e => updateQty(e, -1)
+    );
 }
 
 // ----------------------
-// Remove item from cart
-function removeCartItem(id) {
+function updateQty(e, delta, remove = false) {
+    const id = Number(e.target.closest('[data-id]').dataset.id);
     const item = cart.find(i => i.id === id);
     if (!item) return;
-    cart = cart.filter(i => i.id !== id);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    renderCheckout();
-    renderCartModal();
-}
 
-// ----------------------
-// Change quantity
-function changeQuantity(id, delta) {
-    const item = cart.find(i => i.id === id);
-    if (!item) return;
-    item.quantity += delta;
-    if (item.quantity <= 0) {
-        removeCartItem(id);
-        return;
+    if (remove) {
+        cart = cart.filter(i => i.id !== id);
+    } else {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+            cart = cart.filter(i => i.id !== id);
+        }
     }
+
     localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
     renderCheckout();
-    renderCartModal();
+    renderCartOffcanvas();
 }
 
 // ----------------------
-// Init
+visaRadio.onchange = codRadio.onchange = () => {
+    visaFields.classList.toggle('d-none', !visaRadio.checked);
+    codNote.classList.toggle('d-none', !codRadio.checked);
+    renderCheckout();
+};
+
+// ----------------------
+placeOrderBtn?.addEventListener('click', () => {
+    if (!cart.length) return;
+
+    localStorage.removeItem('cart');
+    cart = [];
+    renderCheckout();
+    renderCartOffcanvas();
+
+    orderMsg.textContent = '✅ Order placed successfully!';
+});
+
+// ----------------------
 document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
     renderCheckout();
-    renderCartModal();
-
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', () => {
-            window.location.href = 'checkout.html';
-        });
-    }
+    renderCartOffcanvas();
 });
