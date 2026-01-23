@@ -1,62 +1,115 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize cart count from localStorage
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ===================== DATA ===================== */
+    const mugs = [
+        { id: 1, name: "Naruto Ceramic Mug", category: "anime", price: 89, image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400",  reviews: 24, badge: "New" },
+        { id: 2, name: "Liverpool FC Mug", category: "football", price: 79, oldPrice: 99, image: "https://images.unsplash.com/photo-1572119865084-43c285814d63?w=400", reviews: 18, badge: "Sale" },
+        { id: 3, name: "Kawaii Cat Mug", category: "cute", price: 75, image: "https://images.unsplash.com/photo-1517256673644-36ad11246d21?w=400",  reviews: 32 },
+        { id: 4, name: "Boss Mode Mug", category: "motivational", price: 85, image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400",  reviews: 45, badge: "Hot" },
+        { id: 5, name: "Attack on Titan Mug", category: "anime", price: 95, image: "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=400", reviews: 19 },
+        { id: 6, name: "Real Madrid Mug", category: "football", price: 85, image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400",  reviews: 52, badge: "New" },
+        { id: 7, name: "Monday Mood Mug", category: "funny", price: 69, oldPrice: 89, image: "https://images.unsplash.com/photo-1532102235608-dc8fc689acb2?w=400", reviews: 38, badge: "Sale" },
+        { id: 8, name: "Pastel Dreams Mug", category: "cute", price: 82, image: "https://images.unsplash.com/photo-1497515114629-f71d768fd07c?w=400", reviews: 27 }
+    ];
+
+    /* ===================== ELEMENTS ===================== */
+    const mugsContainer = document.getElementById("mugsContainer");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const sortFilter = document.getElementById("sortFilter");
+
+    /* ===================== CART ===================== */
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     updateCartCount();
 
-    // ===================== Filter Functionality =====================
-    const categoryFilter = document.getElementById('categoryFilter');
-    const sortFilter = document.getElementById('sortFilter');
-    const mugsContainer = document.getElementById('mugsContainer');
-    
-    if (categoryFilter) {
-        categoryFilter.addEventListener('change', filterProducts);
-    }
-    
-    if (sortFilter) {
-        sortFilter.addEventListener('change', filterProducts);
+    /* ===================== RENDER ===================== */
+    function renderMugs(list) {
+        mugsContainer.innerHTML = "";
+
+        list.forEach(mug => {
+            mugsContainer.innerHTML += `
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="mug-card"
+                    data-id="${mug.id}"
+                    data-category="${mug.category}"
+                    data-price="${mug.price}">
+
+                    <div class="mug-image" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                        ${mug.badge ? `<span class="mug-badge ${mug.badge.toLowerCase()}">${mug.badge}</span>` : ""}
+                        <img src="${mug.image}">
+                    </div>
+
+                    <div class="mug-info">
+                        <span class="mug-category">${mug.category}</span>
+                        <h5 class="mug-title">${mug.name}</h5>
+
+                        <div class="mug-price">
+                            ${mug.oldPrice ? `<span class="old-price">${mug.oldPrice} EGP</span>` : ""}
+                            <span class="current-price">${mug.price} EGP</span>
+                        </div>
+
+                        <button class="btn btn-dark btn-sm w-100 mt-2 btn-add-cart">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        });
     }
 
+    /* ===================== FILTER & SORT ===================== */
     function filterProducts() {
-        const category = categoryFilter.value;
-        const sortBy = sortFilter.value;
-        const products = Array.from(mugsContainer.querySelectorAll('[data-category]'));
-        
-        // Filter by category
-        products.forEach(product => {
-            const productCategory = product.dataset.category;
-            if (category === 'all' || productCategory === category) {
-                product.style.display = 'block';
-            } else {
-                product.style.display = 'none';
-            }
-        });
+        let filtered = [...mugs];
 
-        // Sort products
-        const visibleProducts = products.filter(p => p.style.display !== 'none');
-        
-        visibleProducts.sort((a, b) => {
-            const priceA = parseInt(a.dataset.price);
-            const priceB = parseInt(b.dataset.price);
-            const nameA = a.querySelector('.mug-title').textContent;
-            const nameB = b.querySelector('.mug-title').textContent;
-            
-            switch(sortBy) {
-                case 'price-low':
-                    return priceA - priceB;
-                case 'price-high':
-                    return priceB - priceA;
-                case 'name':
-                    return nameA.localeCompare(nameB);
-                default:
-                    return 0;
-            }
-        });
+        if (categoryFilter.value !== "all") {
+            filtered = filtered.filter(m => m.category === categoryFilter.value);
+        }
 
-        // Re-append sorted products
-        visibleProducts.forEach(product => {
-            mugsContainer.appendChild(product);
-        });
+        if (sortFilter.value === "price-low") filtered.sort((a, b) => a.price - b.price);
+        if (sortFilter.value === "price-high") filtered.sort((a, b) => b.price - a.price);
+        if (sortFilter.value === "name") filtered.sort((a, b) => a.name.localeCompare(b.name));
+
+        renderMugs(filtered);
     }
+
+    categoryFilter.addEventListener("change", filterProducts);
+    sortFilter.addEventListener("change", filterProducts);
+
+    /* ===================== ADD TO CART ===================== */
+    mugsContainer.addEventListener("click", e => {
+        if (e.target.classList.contains("btn-add-cart")) {
+            const card = e.target.closest(".mug-card");
+
+            const item = {
+                id: card.dataset.id,
+                title: card.querySelector(".mug-title").textContent,
+                price: card.querySelector(".current-price").textContent,
+                image: card.querySelector("img").src,
+                quantity: 1
+            };
+
+            const existing = cartItems.find(i => i.id === item.id);
+            if (existing) existing.quantity++;
+            else cartItems.push(item);
+
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            updateCartCount();
+            showToast();
+        }
+    });
+
+    function updateCartCount() {
+        const total = cartItems.reduce((s, i) => s + i.quantity, 0);
+        document.querySelectorAll(".cart-count").forEach(el => el.textContent = total);
+    }
+
+    function showToast() {
+        new bootstrap.Toast(document.getElementById("cartToast"), { delay: 3000 }).show();
+    }
+
+    /* ===================== INIT ===================== */
+    renderMugs(mugs);
+});
+
 
     // ===================== Quick View Modal =====================
     const quickViewButtons = document.querySelectorAll('.btn-quick-view');
@@ -290,4 +343,13 @@ document.addEventListener('DOMContentLoaded', function() {
         html += '</div>';
         searchResults.innerHTML = html;
     }
-});
+
+
+
+function renderStars(rate) {
+    let stars = "";
+    for (let i = 1; i <= 5; i++) {
+        stars += `<i class="bi ${i <= rate ? "bi-star-fill" : "bi-star"}"></i>`;
+    }
+    return stars;
+}
