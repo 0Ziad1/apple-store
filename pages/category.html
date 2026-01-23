@@ -1,124 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apple Store | Products</title>
+    <title>Apple-Store - Premium products Collection</title>
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/product.css">
 </head>
 
 <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top shadow-sm">
+        <div class="container">
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-    <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="../index.html">
+                <img src="../assets/logo.jpg" alt="Apple Store" class="logo-img">
+            </a>
 
-        <!-- TOGGLER -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="stickersDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            Stickers
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="category.html?cat=Football">Football</a></li>
+                            <li><a class="dropdown-item" href="category.html?cat=anime">Anime</a></li>
+                            <li><a class="dropdown-item" href="category.html?cat=cute">Cute</a></li>
+                            <li><a class="dropdown-item" href="category.html?cat=funny">Funny</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="category.html?cat=sheet">Sticker Sheets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="../pages/category.html">Mugs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
 
-        <!-- LOGO -->
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-            <img src="assets/logo.jpg" alt="Apple Store" class="logo-img">
-        </a>
-
-        <!-- MENU -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto align-items-center">
-                <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Home</a>
-                </li>
-
-                <!-- Stickers (no dropdown) -->
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/category.html?type=sticker">Stickers</a>
-                </li>
-
-                <!-- Sheets -->
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/category.html?type=sheet">Sticker Sheets</a>
-                </li>
-
-                <!-- Mugs -->
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/category.html?type=mug">Mugs</a>
-                </li>
-
-                <!-- Contact -->
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#contact">Contact</a>
-                </li>
-            </ul>
+            <!-- Icons -->
+            <div class="icon-group d-flex align-items-center">
+                <a href="#" class="nav-icon me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="#" class="nav-icon me-2" data-bs-toggle="modal" data-bs-target="#searchModal">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+                <a href="#" class="nav-icon btn btn-outline-success position-relative" data-bs-toggle="modal"
+                    data-bs-target="#cartModal">
+                    <i class="bi bi-cart3"></i>
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
+                </a>
+            </div>
         </div>
-
-        <!-- ICONS -->
-        <div class="icon-group d-flex align-items-center">
-            <a href="#" class="nav-icon me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
-                <i class="fa-solid fa-user"></i>
-            </a>
-            <a href="#" class="nav-icon me-2" id="searchIcon" data-bs-toggle="modal" data-bs-target="#searchModal">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </a>
-            <a href="#" class="nav-icon btn btn-outline-success position-relative">
-                <i class="bi bi-cart3"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
-            </a>
-        </div>
-
-    </div>
-</nav>
-
-
-<!-- PAGE CONTENT -->
-<div class="container my-5">
-
-    <!-- TITLE + FILTER -->
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-        <h2 id="pageTitle" class="mb-3 mb-md-0">Products</h2>
-
-        <select id="categoryFilter" class="form-select w-auto">
-            <option value="all">All Categories</option>
-            <option value="football">Football</option>
-            <option value="anime">Anime</option>
-            <option value="cute">Cute</option>
-            <option value="funny">Funny</option>
-        </select>
-    </div>
-
-    <!-- PRODUCTS GRID -->
-    <div id="productContainer" class="row g-4">
-        <!-- JS injects cards -->
-    </div>
-
-    <!-- PAGINATION -->
-    <nav class="mt-5">
-        <ul id="pagination" class="pagination justify-content-center"></ul>
     </nav>
+    <!-- Filter Section -->
+    <section class="filter-section py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="section-title mb-0">
+                        <i class="bi bi-cup-fill me-2"></i>Our products
+                    </h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex gap-3 justify-content-md-end mt-3 mt-md-0 flex-wrap">
+                        <select class="form-select filter-select" id="categoryFilter">
+                            <option value="all">All Categories</option>
+                            <option value="anime">Anime</option>
+                            <option value="football">Football</option>
+                            <option value="cute">Cute</option>
+                            <option value="funny">Funny</option>
+                            <option value="motivational">Motivational</option>
+                        </select>
+                        <select class="form-select filter-select" id="sortFilter">
+                            <option value="default">Sort By</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name A-Z</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- Products Grid -->
+    <section class="products-section py-5" id="products-grid">
+        <div class="container">
+            <div class="row g-4" id="productsContainer">
+                <!-- product 1 -->
+                <div class="col-6 col-md-4 col-lg-3" data-category="anime" data-price="89">
+                    <div class="product-card" data-bs-toggle="modal" data-bs-target="#quickViewModal">
+                        <div class="product-image">
 
-<!-- FOOTER -->
-<footer class="text-center text-muted py-3 border-top">
-    © 2026 Apple Store
-</footer>
+                            <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400"
+                                alt="Anime product">
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Anime</span>
+                            <h5 class="product-title">Naruto Ceramic product</h5>
 
-<!-- DATA + LOGIC -->
-<script src="../js/products.js"></script>
-<script src="../js/category.js"></script>
-<script src="../js/main.js"></script>
+                            <div class="product-price">
+                                <span class="current-price">89 EGP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <nav class="mt-5">
+                    <ul class="pagination justify-content-center" id="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+    </section>
+    <!-- Quick View Modal -->
+    <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content quick-view-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="quick-view-image">
+                                <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500"
+                                    alt="Product" id="quickViewImage">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <span class="product-category">Anime</span>
+                            <h3 id="quickViewTitle">Naruto Ceramic product</h3>
+                            <p class="text-muted mb-3">High-quality ceramic product with vibrant, fade-resistant
+                                printing.
+                                Perfect for your morning coffee or tea. Microwave and dishwasher safe.</p>
+                            <div class="quick-view-price mb-4">
+                                <span class="current-price">89 EGP</span>
+                            </div>
 
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Size</label>
+                                <div class="size-options">
+                                    <button class="size-btn active">Standard (300ml)</button>
+                                    <button class="size-btn">Large (450ml)</button>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Quantity</label>
+                                <div class="quantity-selector">
+                                    <button class="qty-btn" id="decreaseQty">-</button>
+                                    <input type="number" class="qty-input" value="1" min="1" max="99">
+                                    <button class="qty-btn" id="increaseQty">+</button>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-add-to-cart w-100">
+                                <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content search-modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center mb-4">Search Products</h3>
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control search-input" placeholder="Search for products..."
+                            autofocus>
+                        <button class="btn btn-primary" type="button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div class="search-results mt-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content login-modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="text-center mb-4">
+                        <div class="login-icon-wrapper mb-3">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <h3>Welcome Back</h3>
+                        <p class="text-muted">Sign in to your account</p>
+                    </div>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Sign In</button>
+                        <p class="text-center text-muted">Don't have an account? <a href="#">Sign up</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content cart-modal-content">
+                <div class="modal-header border-0">
+                    <h3 class="modal-title"><i class="bi bi-cart3 me-2"></i>Shopping Cart</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="cart-items-container">
+                        <!-- Items will be rendered here -->
+                    </div>
+
+                    <div class="empty-cart text-center py-5">
+                        <i class="bi bi-cart-x" style="font-size: 4rem; color: #ccc;"></i>
+                        <p class="text-muted mt-3">Your cart is empty</p>
+                        <a href="#products-grid" class="btn btn-primary mt-2" data-bs-dismiss="modal">Start Shopping</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-4" id="contact">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="footer-contact d-flex flex-wrap align-items-center gap-3 mb-3 mb-md-0">
+                        <div class="footer-item d-flex align-items-center gap-2">
+                            <a href="https://maps.app.goo.gl/Q8iFqu5bacgHWEP28" target="_blank">
+                                <i class="fa-solid fa-location-crosshairs"></i>
+                                <span>السكاكيني، حي الظاهر، محافظة القاهرة</span>
+                            </a>
+                        </div>
+                        <div class="footer-item d-flex align-items-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>010 68458049</span>
+                        </div>
+                        <div class="footer-item d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-at"></i>
+                            <span>info@apple-store.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="footer-social d-flex gap-3 justify-content-center justify-content-md-end">
+                        <a href="https://www.facebook.com/share/1DZSAA1qbx/?mibextid=wwXIfr" target="_blank">
+                            <i class="fa-brands fa-square-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/apple_store_el_daher" target="_blank">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-muted mt-3" style="font-size: 0.85rem;">
+                &copy; 2026 Apple Store. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="cartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <strong class="me-auto">Added to Cart</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Item has been added to your cart!
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/products.js"></script>
+    <script src="../js/main.js"></script>
 </body>
+
 </html>
