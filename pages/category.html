@@ -1,317 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apple-Store - Premium Stickers Shop</title>
+    <title>Apple Store | Products</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        crossorigin="anonymous">
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/cards.css">
-    <link rel="stylesheet" href="../css/category.css">
-    <link rel="stylesheet" href="../css/product.css">
-
-
-
-
-
-
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-        <div class="container">
 
-            <!-- TOGGLER -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <div class="container">
 
-            <!-- LOGO -->
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="../index.html">
-                <img src="../assets/logo.jpg" alt="Apple Store" class="logo-img">
-            </a>
+        <!-- TOGGLER -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- MENU -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="../index.html">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="stickersDropdown" role="button"
-                            data-bs-toggle="dropdown">
-                            Stickers
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="../pages/category.html?cat=Football">Football</a></li>
-                            <li><a class="dropdown-item" href="../pages/category.html?cat=anime">Anime</a></li>
-                            <li><a class="dropdown-item" href="../pages/category.html?cat=cute">Cute</a></li>
-                            <li><a class="dropdown-item" href="../pages/category.html?cat=funny">Funny</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/category.html?cat=sheet">Sticker Sheets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages/category.html?cat=mugs">Mugs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
+        <!-- LOGO -->
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+            <img src="assets/logo.jpg" alt="Apple Store" class="logo-img">
+        </a>
 
-            <!-- ICONS -->
-            <div class="icon-group d-flex align-items-center">
-                <a href="#" class="nav-icon me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    <i class="fa-solid fa-user"></i>
-                </a>
-                <a href="#" class="nav-icon me-2" id="searchIcon" aria-label="Search" data-bs-toggle="modal"
-                    data-bs-target="#searchModal">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </a>
-                <a href="#" class="btn btn-outline-success position-relative" data-bs-toggle="modal"
-                    data-bs-target="#cartModal">
-                    <i class="bi bi-cart3"></i>
-                    <span
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
-                </a>
-            </div>
+        <!-- MENU -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
 
+                <!-- Stickers (no dropdown) -->
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/category.html?type=sticker">Stickers</a>
+                </li>
+
+                <!-- Sheets -->
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/category.html?type=sheet">Sticker Sheets</a>
+                </li>
+
+                <!-- Mugs -->
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/category.html?type=mug">Mugs</a>
+                </li>
+
+                <!-- Contact -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#contact">Contact</a>
+                </li>
+            </ul>
         </div>
+
+        <!-- ICONS -->
+        <div class="icon-group d-flex align-items-center">
+            <a href="#" class="nav-icon me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a href="#" class="nav-icon me-2" id="searchIcon" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <a href="#" class="nav-icon btn btn-outline-success position-relative">
+                <i class="bi bi-cart3"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+
+<!-- PAGE CONTENT -->
+<div class="container my-5">
+
+    <!-- TITLE + FILTER -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+        <h2 id="pageTitle" class="mb-3 mb-md-0">Products</h2>
+
+        <select id="categoryFilter" class="form-select w-auto">
+            <option value="all">All Categories</option>
+            <option value="football">Football</option>
+            <option value="anime">Anime</option>
+            <option value="cute">Cute</option>
+            <option value="funny">Funny</option>
+        </select>
+    </div>
+
+    <!-- PRODUCTS GRID -->
+    <div id="productContainer" class="row g-4">
+        <!-- JS injects cards -->
+    </div>
+
+    <!-- PAGINATION -->
+    <nav class="mt-5">
+        <ul id="pagination" class="pagination justify-content-center"></ul>
     </nav>
 
+</div>
 
+<!-- FOOTER -->
+<footer class="text-center text-muted py-3 border-top">
+    © 2026 Apple Store
+</footer>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content login-modal-content">
-                <div class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <div class="text-center mb-4">
-                        <div class="login-icon-wrapper mb-3">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <h3 class="modal-title" id="loginModalLabel">Welcome Back</h3>
-                        <p class="text-muted">Sign in to your account to continue</p>
-                    </div>
-                    <form id="loginForm">
-                        <div class="mb-3">
-                            <label for="loginEmail" class="form-label fw-semibold">Email Address</label>
-                            <input type="email" class="form-control form-control-lg" id="loginEmail"
-                                placeholder="Enter your email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="loginPassword" class="form-label fw-semibold">Password</label>
-                            <input type="password" class="form-control form-control-lg" id="loginPassword"
-                                placeholder="Enter your password" required>
-                        </div>
-                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="rememberMe">
-                                <label class="form-check-label" for="rememberMe">
-                                    Remember me
-                                </label>
-                            </div>
-                            <a href="#" class="text-decoration-none">Forgot password?</a>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
-                            <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
-                        </button>
-                        <div class="text-center">
-                            <p class="text-muted mb-0">Don't have an account? <a href="#"
-                                    class="text-decoration-none fw-semibold">Sign up</a></p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product Options Modal -->
-    <div class="modal fade" id="productOptionsModal" tabindex="-1" aria-labelledby="productOptionsModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content product-options-modal-content">
-                <div class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <div class="row g-4">
-                        <div class="col-md-5">
-                            <div class="product-options-image" id="productOptionsImage">
-                                <!-- Product image will be inserted here -->
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <h3 class="modal-title mb-2" id="productOptionsModalLabel">Product Name</h3>
-                            <p class="text-muted mb-3" id="productOptionsDescription">Product description</p>
-                            <div class="mb-4">
-                                <span class="price fs-4" id="productOptionsPrice">$0.00</span>
-                            </div>
-                            <form id="productOptionsForm">
-                                <input type="hidden" id="productOptionsName" value="">
-                                <input type="hidden" id="productOptionsBasePrice" value="">
-
-                                <div class="mb-3">
-                                    <label for="productSize" class="form-label fw-semibold">Size</label>
-                                    <select class="form-select form-select-sm" id="productSize" required>
-                                        <option value="">Choose an option</option>
-                                        <option value="small">Small</option>
-                                        <option value="medium">Medium</option>
-                                        <option value="large">Large</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="productQuantity" class="form-label fw-semibold">Quantity</label>
-                                    <div class="input-group input-group-lg">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="decreaseQty">-</button>
-                                        <input type="number" class="form-control text-center" id="productQuantity"
-                                            value="1" min="1" max="99" required>
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="increaseQty">+</button>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btn-lg w-100">
-                                    <i class="bi bi-cart-plus me-2"></i>Add to Cart
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cart Modal -->
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content cart-modal-content">
-                <div class="modal-header border-0 pb-0">
-                    <h3 class="modal-title" id="cartModalLabel">Shopping Cart</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <div id="cartItemsContainer">
-                        <!-- Cart items will be dynamically inserted here -->
-                        <div class="empty-cart text-center py-5">
-                            <i class="bi bi-cart-x" style="font-size: 4rem; color: #ccc;"></i>
-                            <p class="text-muted mt-3">Your cart is empty</p>
-                            <a href="#shop" class="btn btn-primary mt-2" data-bs-dismiss="modal">Continue Shopping</a>
-                        </div>
-                    </div>
-                    <div id="cartSummary" class="cart-summary mt-4 pt-4 border-top" style="display: none;">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Subtotal:</span>
-                                    <span id="cartSubtotal">$0.00</span>
-                                </div>
-                                <div class="d-flex justify-content-between mb-2">
-                                    <span>Shipping:</span>
-                                    <span>Calculated at checkout</span>
-                                </div>
-                                <div class="d-flex justify-content-between mb-3">
-                                    <strong>Total:</strong>
-                                    <strong class="text-primary fs-5" id="cartTotal">$0.00</strong>
-                                </div>
-                            </div>
-                            <div class="col-md-4 text-end">
-                                <button class="btn btn-primary btn-lg w-100 mb-2" id="checkoutButton">
-                                    Checkout
-                                </button>
-                                <button class="btn btn-outline-secondary btn-sm w-100" data-bs-dismiss="modal">
-                                    Continue Shopping
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container my-5">
-        <h2 id="categoryTitle" class="mb-4 text-center">Category Products</h2>
-        <div id="productContainer" class="row g-4">
-            <!-- Cards inserted by JS -->
-        </div>
-
-        <!-- Pagination -->
-        <nav>
-            <ul id="pagination" class="pagination justify-content-center mt-4"></ul>
-        </nav>
-
-    </div>
-    <footer class="footer py-3" id="contact">
-        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-
-            <!-- Contact Info -->
-            <div class="footer-contact d-flex flex-wrap align-items-center gap-3 mb-2 mb-md-0">
-                <div class="footer-item d-flex align-items-center gap-1">
-                    <a href="https://maps.app.goo.gl/Q8iFqu5bacgHWEP28" target="_parent"
-                        style="color: #76b852;text-decoration: none;"><i class="fa-solid fa-location-crosshairs"></i>
-                        <span> السكاكيني، حي الظاهر، محافظة القاهرة</span>
-                    </a>
-                </div>
-                <div class="footer-item d-flex align-items-center gap-1">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <span>010 68458049</span>
-                </div>
-                <div class="footer-item d-flex align-items-center gap-1">
-                    <i class="fa-solid fa-at"></i>
-                    <span>info@apple-store.com</span>
-                </div>
-            </div>
-
-            <!-- Social Links -->
-            <div class="footer-social d-flex gap-3">
-                <a href="https://www.facebook.com/share/1DZSAA1qbx/?mibextid=wwXIfr" target="_blank"
-                    aria-label="Facebook">
-                    <i class="fa-brands fa-square-facebook"></i>
-                </a>
-                <a href="https://www.instagram.com/apple_store_el_daher?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-                    target="_blank" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-            </div>
-
-        </div>
-
-        <!-- Footer bottom -->
-        <div class="text-center text-muted mt-2" style="font-size:0.8rem;">
-            &copy; 2026 Apple Store. All rights reserved.
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="../js/products.js"></script>
-    <script src="../js/main.js"></script>
-
-
-
+<!-- DATA + LOGIC -->
+<script src="../js/products.js"></script>
+<script src="../js/category.js"></script>
+<script src="../js/main.js"></script>
 
 </body>
-
 </html>

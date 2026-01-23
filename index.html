@@ -18,68 +18,65 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-        <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <div class="container">
 
-            <!-- TOGGLER -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- TOGGLER -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- LOGO -->
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-                <img src="assets/logo.jpg" alt="Apple Store" class="logo-img">
-            </a>
+        <!-- LOGO -->
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
+            <img src="assets/logo.jpg" alt="Apple Store" class="logo-img">
+        </a>
 
-            <!-- MENU -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="stickersDropdown" role="button"
-                            data-bs-toggle="dropdown">
-                            Stickers
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="pages/category.html?cat=Football">Football</a></li>
-                            <li><a class="dropdown-item" href="pages/category.html?cat=anime">Anime</a></li>
-                            <li><a class="dropdown-item" href="pages/category.html?cat=cute">Cute</a></li>
-                            <li><a class="dropdown-item" href="pages/category.html?cat=funny">Funny</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/category.html?cat=sheet">Sticker Sheets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages/category.html?cat=mugs">Mugs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
+        <!-- MENU -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
 
-            <!-- ICONS -->
-            <div class="icon-group d-flex align-items-center">
-                <a href="#" class="nav-icon me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
-                    <i class="fa-solid fa-user"></i>
-                </a>
-                <a href="#" class="nav-icon me-2" id="searchIcon" aria-label="Search" data-bs-toggle="modal"
-                    data-bs-target="#searchModal">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </a>
-                <a href="#" class="nav-icon me-2  btn btn-outline-success  position-relative" data-bs-toggle="modal"
-                    data-bs-target="#cartModal">
-                    <i class="bi bi-cart3"></i>
-                    <span
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
-                </a>
-            </div>
+                <!-- Stickers (no dropdown) -->
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/category.html?type=sticker">Stickers</a>
+                </li>
 
+                <!-- Sheets -->
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/category.html?type=sheet">Sticker Sheets</a>
+                </li>
+
+                <!-- Mugs -->
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/category.html?type=mug">Mugs</a>
+                </li>
+
+                <!-- Contact -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#contact">Contact</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+
+        <!-- ICONS -->
+        <div class="icon-group d-flex align-items-center">
+            <a href="#" class="nav-icon me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a href="#" class="nav-icon me-2" id="searchIcon" data-bs-toggle="modal" data-bs-target="#searchModal">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <a href="#" class="nav-icon btn btn-outline-success position-relative">
+                <i class="bi bi-cart3"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
+            </a>
+        </div>
+
+    </div>
+</nav>
+
 
 
 
@@ -240,58 +237,59 @@
         </div>
     </div>
     <!-- Sign Up Modal -->
-<div class="modal fade" id="signupModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content login-modal-content">
-            <div class="modal-header border-0 pb-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <div class="modal-body p-4">
-                <div class="text-center mb-4">
-                    <div class="login-icon-wrapper mb-3">
-                        <i class="fa-solid fa-user-plus"></i>
-                    </div>
-                    <h3>Create Account</h3>
-                    <p class="text-muted">Sign up to get started</p>
+    <div class="modal fade" id="signupModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content login-modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <form id="signupForm">
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Name</label>
-                        <input type="text" class="form-control form-control-lg" required>
+                <div class="modal-body p-4">
+                    <div class="text-center mb-4">
+                        <div class="login-icon-wrapper mb-3">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <h3>Create Account</h3>
+                        <p class="text-muted">Sign up to get started</p>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Email</label>
-                        <input type="email" class="form-control form-control-lg" required>
-                    </div>
+                    <form id="signupForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Name</label>
+                            <input type="text" class="form-control form-control-lg" required>
+                        </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Password</label>
-                        <input type="password" class="form-control form-control-lg" required>
-                    </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email</label>
+                            <input type="email" class="form-control form-control-lg" required>
+                        </div>
 
-                    <button class="btn btn-success btn-lg w-100">
-                        Create Account
-                    </button>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Password</label>
+                            <input type="password" class="form-control form-control-lg" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Phone Number</label>
+                            <input type="phone" class="form-control form-control-lg" required>
+                        </div>
 
-                    <div class="text-center mt-3">
-                        <p class="text-muted">
-                            Already have an account?
-                            <a href="#"
-                               data-bs-dismiss="modal"
-                               data-bs-toggle="modal"
-                               data-bs-target="#loginModal">
-                               Sign in
-                            </a>
-                        </p>
-                    </div>
-                </form>
+                        <button class="btn btn-success btn-lg w-100">
+                            Create Account
+                        </button>
+
+                        <div class="text-center mt-3">
+                            <p class="text-muted">
+                                Already have an account?
+                                <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                    Sign in
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
     <!-- Product Options Modal -->
