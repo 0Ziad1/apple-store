@@ -334,3 +334,10 @@
 
         citySelect?.addEventListener('change', renderCheckout);
     });
+
+
+document.getElementById('loginModal')
+    .addEventListener('hidden.bs.modal', () => {
+        document.getElementById('loginForm').reset();
+    });
+
