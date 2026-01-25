@@ -621,6 +621,16 @@
     #bestSeller .card-body {
         background-color: #f8f9fa;
     }
+ .category-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #76b852;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+
 
     .footer-social i {
         color: #76b852;
@@ -630,4 +640,3 @@
     #contact i {
         color: #76b852;
     }
-    
