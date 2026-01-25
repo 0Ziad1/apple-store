@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/product.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+
 </head>
 
 <body>
@@ -37,16 +40,10 @@
                         <a class="nav-link" href="../index.html">Home</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="stickersDropdown" role="button"
+                        <a class="nav-link" href="#" id="stickersDropdown" role="button"
                             data-bs-toggle="dropdown">
                             Stickers
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="category.html?cat=Football">Football</a></li>
-                            <li><a class="dropdown-item" href="category.html?cat=anime">Anime</a></li>
-                            <li><a class="dropdown-item" href="category.html?cat=cute">Cute</a></li>
-                            <li><a class="dropdown-item" href="category.html?cat=funny">Funny</a></li>
-                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="category.html?cat=sheet">Sticker Sheets</a>
@@ -110,27 +107,11 @@
 
     <!-- Products Grid -->
     <section class="products-section py-5" id="products-grid">
-        <div class="container">
-            <div class="row g-4" id="productsContainer">
-                <!-- product 1 -->
-                <div class="col-6 col-md-4 col-lg-3" data-category="anime" data-price="89">
-                    <div class="product-card" data-bs-toggle="modal" data-bs-target="#quickViewModal">
-                        <div class="product-image">
+        <div class="row" id="productsContainer">
+    <!-- Dynamic products will be inserted here -->
+</div>
 
-                            <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400"
-                                alt="Anime product">
-
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Anime</span>
-                            <h5 class="product-title">Naruto Ceramic product</h5>
-
-                            <div class="product-price">
-                                <span class="current-price">89 EGP</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+ 
                 <!-- Pagination -->
                 <nav class="mt-5">
                     <ul class="pagination justify-content-center" id="pagination">
@@ -199,23 +180,26 @@
         </div>
     </div>
 
+
     <!-- Search Modal -->
-    <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content search-modal-content">
                 <div class="modal-header border-0 pb-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h3 class="text-center mb-4">Search Products</h3>
-                    <div class="input-group input-group-lg">
-                        <input type="text" class="form-control search-input" placeholder="Search for products..."
-                            autofocus>
-                        <button class="btn btn-primary" type="button">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
+                    <h3 class="modal-title text-center mb-4" id="searchModalLabel">Search Products</h3>
+                    <div class="search-container">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control search-input" id="searchInput"
+                                placeholder="Search for stickers, products..." autofocus>
+                            <button class="btn btn-primary" type="button" id="searchButton">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                        <div id="searchResults" class="search-results mt-4"></div>
                     </div>
-                    <div class="search-results mt-4"></div>
                 </div>
             </div>
         </div>
@@ -254,28 +238,53 @@
     </div>
 
     <!-- Cart Modal -->
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content cart-modal-content">
-                <div class="modal-header border-0">
-                    <h3 class="modal-title"><i class="bi bi-cart3 me-2"></i>Shopping Cart</h3>
+                <div class="modal-header border-0 pb-0">
+                    <h3 class="modal-title" id="cartModalLabel">Shopping Cart</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="cart-items-container">
-                        <!-- Items will be rendered here -->
+                <div class="modal-body p-4">
+                    <div id="cartItemsContainer">
+                        <!-- Cart items will be dynamically inserted here -->
+                        <div class="empty-cart text-center py-5">
+                            <i class="bi bi-cart-x" style="font-size: 4rem; color: #ccc;"></i>
+                            <p class="text-muted mt-3">Your cart is empty</p>
+                            <a href="#shop" class="btn btn-primary mt-2" data-bs-dismiss="modal">Continue Shopping</a>
+                        </div>
                     </div>
-
-                    <div class="empty-cart text-center py-5">
-                        <i class="bi bi-cart-x" style="font-size: 4rem; color: #ccc;"></i>
-                        <p class="text-muted mt-3">Your cart is empty</p>
-                        <a href="#products-grid" class="btn btn-primary mt-2" data-bs-dismiss="modal">Start Shopping</a>
+                    <div id="cartSummary" class="cart-summary mt-4 pt-4 border-top" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Subtotal:</span>
+                                    <span id="cartSubtotal">$0.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Shipping:</span>
+                                    <span>Calculated at checkout</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <strong>Total:</strong>
+                                    <strong class="text-primary fs-5" id="cartTotal">$0.00</strong>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <button class="btn btn-primary btn-lg w-100 mb-2" id="checkoutButton">
+                                    Checkout
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm w-100" data-bs-dismiss="modal">
+                                    Continue Shopping
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+
 
     <!-- Footer -->
     <footer class="footer py-4" id="contact">
@@ -333,8 +342,9 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script type="module" src="../js/products.js"></script>
-    <script type="module" src="../js/main.js"></script>
+    <!-- <script type="module" src="../js/products.js"></script> -->
+     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="../js/main.js"></script>
 </body>
 
 </html>

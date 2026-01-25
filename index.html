@@ -41,22 +41,22 @@
 
                     <!-- Stickers (no dropdown) -->
                     <li class="nav-item">
-                        <a class="nav-link" href="/pages/category.html">Stickers</a>
+                        <a class="nav-link" href="pages/category.html?cat=stickers">Stickers</a>
                     </li>
 
                     <!-- Sheets -->
                     <li class="nav-item">
-                        <a class="nav-link" href="/pages/category.html">Sticker Sheets</a>
+                        <a class="nav-link" href="pages/category.html">Sticker Sheets</a>
                     </li>
 
                     <!-- Mugs -->
                     <li class="nav-item">
-                        <a class="nav-link" href="/pages/category.html">Mugs</a>
+                        <a class="nav-link" href="pages/category.html">Mugs</a>
                     </li>
 
                     <!-- Contact -->
                     <li class="nav-item">
-                        <a class="nav-link" href="/pages/category.html">Contact</a>
+                        <a class="nav-link" href="pages/category.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -69,11 +69,13 @@
                 <a href="#" class="nav-icon me-2" id="searchIcon" data-bs-toggle="modal" data-bs-target="#searchModal">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </a>
-                <a href="#" class="nav-icon btn btn-outline-success position-relative">
+                <a href="#" class="nav-icon btn btn-outline-success position-relative" data-bs-toggle="modal"
+                    data-bs-target="#cartModal">
                     <i class="bi bi-cart3"></i>
                     <span
                         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
                 </a>
+
             </div>
 
         </div>
@@ -405,6 +407,21 @@
         </div>
     </div>
 
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="cartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <strong class="me-auto">Added to Cart</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Item has been added to your cart!
+            </div>
+        </div>
+    </div>
+
+    
+
     <footer class="footer py-3" id="contact">
         <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
 
@@ -447,13 +464,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="js/utils.js"></script>
-    <script type="module" src="js/products.js"></script>
-    <script type="module" src="js/cards.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/navbar.js"></script>
-    <script src="js/data.js"></script>
 
 </body>
 
