@@ -717,3 +717,6 @@
     background: linear-gradient(135deg, #76b852, #8DC26F);
     border-radius: 2px;
 }
+body, html {
+    overflow-x: hidden;
+}

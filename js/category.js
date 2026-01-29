@@ -34,6 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
             document
                 .querySelector('a[href="category.html?cat=mugs"]')
                 ?.classList.add("active-link");
+        } else if (cat === "medals") {
+            categoryTitle.textContent = "Medals";
+            icon.className = 'bi bi-award-fill me-2';
+            document
+                .querySelector('a[href="category.html?cat=medals"]')
+                ?.classList.add("active-link");
         }
         else {
             document
