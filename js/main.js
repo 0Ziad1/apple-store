@@ -24,6 +24,7 @@ const shippingByGovernorate = {
     Faiyum: 7, "Beni Suef": 8, Minya: 8, Assiut: 9, Sohag: 9, Qena: 9, Luxor: 9,
     Aswan: 10, "New Valley": 10, Matrouh: 10
 };
+let productOptionsModal = null;     // The Bootstrap instance
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
     renderCart();
@@ -32,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     renderBestSellers(products, 4);
     filterAndSortProducts();
+    if (productOptionsModalEl && window.bootstrap) {
+        productOptionsModal = new bootstrap.Modal(productOptionsModalEl);
+    }
 
     const checkoutBtn = document.getElementById('checkoutButton');
     if (checkoutBtn) {
@@ -539,7 +543,7 @@ function filterAndSortProducts() {
 // RENDER BEST SELLER SECTION WITH NOTIFICATION & IDs
 // ----------------------
 
-const productOptionsModal = new bootstrap.Modal(productOptionsModalEl);      // The Bootstrap instance
+
 
 document.addEventListener('click', function (e) {
     const btn = e.target.closest('.open-product-options');
@@ -594,19 +598,19 @@ function renderSearchResults(results) {
 }
 
 // Click search button
-searchButton.addEventListener("click", () => {
+searchButton?.addEventListener("click", () => {
     const query = searchInput.value.trim().toLowerCase();
     const filtered = products.filter(p => p.name.toLowerCase().includes(query));
     renderSearchResults(filtered);
 });
 
 // Press Enter in input
-searchInput.addEventListener("keypress", e => {
+searchInput?.addEventListener("keypress", e => {
     if (e.key === "Enter") searchButton.click();
 });
 
 // Optional: live search as you type
-searchInput.addEventListener("input", () => {
+searchInput?.addEventListener("input", () => {
     const query = searchInput.value.trim().toLowerCase();
     const filtered = products.filter(p => p.name.toLowerCase().includes(query));
     renderSearchResults(filtered);
@@ -622,6 +626,8 @@ searchInput.addEventListener("input", () => {
 
 // Function to open modal and populate data
 function openProductOptionsModal(productId) {
+    if (!productOptionsModal) return; // 👈 يحميك
+
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
@@ -636,7 +642,6 @@ function openProductOptionsModal(productId) {
     productQuantityInput.value = 1;
     productSizeSelect.value = '';
 
-    // THIS IS THE KEY:
     productOptionsModal.show();
 }
 
@@ -644,7 +649,8 @@ function openProductOptionsModal(productId) {
 
 
 
-productOptionsForm.addEventListener('submit', e => {
+
+productOptionsForm?.addEventListener('submit', e => {
     e.preventDefault();
 
     const name = productOptionsName.value;
@@ -656,7 +662,7 @@ productOptionsForm.addEventListener('submit', e => {
     addToCart(name, price, quantity, size, '✨'); // add to cart
     showCartToast(`✅ ${quantity}x ${name} added to cart`);
 
-    productOptionsModal.hide(); // hide modal safely
+    productOptionsModal?.hide(); // hide modal safely
 });
 
 
