@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkoutBtn = document.getElementById('checkoutButton');
     if (checkoutBtn) {
         checkoutBtn.onclick = () => {
-            const path = window.location.pathname.includes('/pages/') ? 'checkout.html' : 'pages/checkout.html';
+            const path = window.location.pathname.includes('/pages/') ? 'checkout.html' : '../pages/checkout.html';
             window.location.href = path;
         };
     }
@@ -615,14 +615,6 @@ searchInput?.addEventListener("input", () => {
     const filtered = products.filter(p => p.name.toLowerCase().includes(query));
     renderSearchResults(filtered);
 });
-
-
-
-
-
-
-
-
 
 // Function to open modal and populate data
 function openProductOptionsModal(productId) {
