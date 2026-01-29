@@ -14,21 +14,23 @@ document.addEventListener("DOMContentLoaded", () => {
     // Category page
     if (path.includes("category.html")) {
         const cat = params.get("cat");
-
+        const icon = document.createElement('i');
         if (cat === "sheet") {
             categoryTitle.textContent = "Sheet Masks";
+            icon.className = 'fa-solid fa-layer-group';
             document
                 .querySelector('a[href="category.html?cat=sheet"]')
                 ?.classList.add("active-link");
-                category
         } else if (cat === "stickers") {
-             categoryTitle.textContent = "Stickers";
+            categoryTitle.textContent = "Stickers";
+            icon.className = 'fa-solid fa-sticky-note';
             document
                 .querySelector('a[href="category.html?cat=stickers"]')
                 ?.classList.add("active-link");
         }
         else if (cat === "mugs") {
             categoryTitle.textContent = "Mugs";
+            icon.className = 'bi bi-cup-fill me-2';
             document
                 .querySelector('a[href="category.html?cat=mugs"]')
                 ?.classList.add("active-link");
@@ -38,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .querySelector('a[href="../pages/category.html"]')
                 ?.classList.add("active-link");
         }
+        categoryTitle.parentElement.prepend(icon);
     }
 
     // Stickers dropdown (لو عندك صفحات خاصة بيها)
