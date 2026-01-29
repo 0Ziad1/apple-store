@@ -24,6 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 .querySelector('a[href="category.html?cat=stickers"]')
                 ?.classList.add("active-link");
         }
+        else if (cat === "mugs") {
+            document
+                .querySelector('a[href="category.html?cat=mugs"]')
+                ?.classList.add("active-link");
+        }
         else {
             document
                 .querySelector('a[href="../pages/category.html"]')
