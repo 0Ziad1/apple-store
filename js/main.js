@@ -24,7 +24,25 @@ const shippingByGovernorate = {
     Faiyum: 7, "Beni Suef": 8, Minya: 8, Assiut: 9, Sohag: 9, Qena: 9, Luxor: 9,
     Aswan: 10, "New Valley": 10, Matrouh: 10
 };
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    renderCart();
+    renderCheckout();
+    renderCartOffcanvas();
+    renderProducts();
+    renderBestSellers(products, 4);
+    filterAndSortProducts();
 
+    const checkoutBtn = document.getElementById('checkoutButton');
+    if (checkoutBtn) {
+        checkoutBtn.onclick = () => {
+            const path = window.location.pathname.includes('/pages/') ? 'checkout.html' : 'pages/checkout.html';
+            window.location.href = path;
+        };
+    }
+
+    citySelect?.addEventListener('change', renderCheckout);
+});
 const citySelect = document.getElementById('city');
 const checkoutItems = document.getElementById('checkoutItems');
 const subtotalEl = document.getElementById('subtotal');
@@ -39,6 +57,14 @@ const codRadio = document.getElementById('pmCod');
 const visaFields = document.getElementById('visaFields');
 const codNote = document.getElementById('codNote');
 const bestSellerContainer = document.getElementById('bestSellerContainer');
+///////////////////////
+const productOptionsModalEl = document.getElementById('productOptionsModal');
+
+const productOptionsModalLabel = document.getElementById('productOptionsModalLabel');
+const productOptionsCategory = document.getElementById('productOptionsCategory');
+const productOptionsPrice = document.getElementById('productOptionsPrice');
+
+const productOptionsCategoryInput = document.getElementById('productOptionsCategoryInput');
 
 // ----------------------
 // ADD TO CART FUNCTION
@@ -328,25 +354,7 @@ document.querySelectorAll('.btn-add-to-cart').forEach(btn => {
 // ----------------------
 // DOM CONTENT LOADED
 // ----------------------
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
-    renderCart();
-    renderCheckout();
-    renderCartOffcanvas();
-    renderProducts();
-    renderBestSellers(products, 4);
-    filterAndSortProducts();
 
-    const checkoutBtn = document.getElementById('checkoutButton');
-    if (checkoutBtn) {
-        checkoutBtn.onclick = () => {
-            const path = window.location.pathname.includes('/pages/') ? 'checkout.html' : 'pages/checkout.html';
-            window.location.href = path;
-        };
-    }
-
-    citySelect?.addEventListener('change', renderCheckout);
-});
 
 // ----------------------
 // LOGIN FORM RESET
@@ -373,17 +381,14 @@ function renderProducts(productList = products) {
                     <h5 class="card-title">${p.emoji} ${p.name}</h5>
                     <p class="card-text text-muted">${p.description}</p>
                     <strong class="mb-3">$${p.price.toFixed(2)}</strong>
-                    <button class="btn btn-primary btn-add-to-cart mt-auto"
-                        data-name="${p.name}"
-                        data-price="${p.price}"
-                        data-emoji="${p.emoji}">
-                        <i class="bi bi-cart-plus me-2"></i>Add to Cart
-                    </button>
+                    <button class="btn btn-primary open-product-options mt-auto"
+                            data-id="${p.id}">
+                            Choose options
+                        </button>
                 </div>
             </div>
         `;
         productsContainer.appendChild(div);
-
         // Small delay for fade effect
         setTimeout(() => div.classList.add('show'), 50);
     });
@@ -533,19 +538,16 @@ function filterAndSortProducts() {
 // ----------------------
 // RENDER BEST SELLER SECTION WITH NOTIFICATION & IDs
 // ----------------------
-const modalEl = document.getElementById('productOptionsModal'); // The DOM element
-const productOptionsModal = new bootstrap.Modal(modalEl);      // The Bootstrap instance
+
+const productOptionsModal = new bootstrap.Modal(productOptionsModalEl);      // The Bootstrap instance
 
 document.addEventListener('click', function (e) {
     const btn = e.target.closest('.open-product-options');
     if (!btn) return;
-
     const productId = Number(btn.dataset.id);
-
-    openProductOptionsModal(productId); // populate modal
-
-    productOptionsModal.show();          // show it
+    openProductOptionsModal(productId); // This already calls .show()
 });
+
 
 
 function renderBestSellers(productList = products, maxItems = 4) {
@@ -614,13 +616,7 @@ searchInput.addEventListener("input", () => {
 
 
 
-const productOptionsModalEl = document.getElementById('productOptionsModal');
 
-const productOptionsModalLabel = document.getElementById('productOptionsModalLabel');
-const productOptionsCategory = document.getElementById('productOptionsCategory');
-const productOptionsPrice = document.getElementById('productOptionsPrice');
-
-const productOptionsCategoryInput = document.getElementById('productOptionsCategoryInput');
 
 
 
@@ -629,32 +625,23 @@ function openProductOptionsModal(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
 
-    // Update modal display
     productOptionsModalLabel.textContent = product.name;
     productOptionsCategory.textContent = `Category: ${product.category}`;
     productOptionsPrice.textContent = `$${product.price.toFixed(2)}`;
 
-    // Update hidden inputs / form values
     productOptionsName.value = product.name;
     productOptionsBasePrice.value = product.price;
     productOptionsCategoryInput.value = product.category;
 
-    // Reset quantity and size
     productQuantityInput.value = 1;
     productSizeSelect.value = '';
 
-    // Show the modal
+    // THIS IS THE KEY:
     productOptionsModal.show();
 }
 
-// Attach click listener using delegation for dynamically generated buttons
-document.addEventListener('click', function (e) {
-    const btn = e.target.closest('.open-product-options');
-    if (!btn) return;
 
-    const productId = Number(btn.dataset.id);
-    openProductOptionsModal(productId);
-});
+
 
 
 productOptionsForm.addEventListener('submit', e => {
