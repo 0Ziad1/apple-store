@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkoutBtn = document.getElementById('checkoutButton');
     if (checkoutBtn) {
         checkoutBtn.onclick = () => {
-            const path = window.location.pathname.includes('/pages/') ? 'checkout.html' : '../pages/checkout.html';
-            window.location.href = path;
+            window.location.href = '../pages/checkout.html';
         };
     }
+
 
     citySelect?.addEventListener('change', renderCheckout);
 });
