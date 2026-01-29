@@ -717,20 +717,3 @@
     background: linear-gradient(135deg, #76b852, #8DC26F);
     border-radius: 2px;
 }
-
-
-
-.nav-link.active-link {
-    position: relative;
-    font-weight: 600;
-}
-
-.nav-link.active-link::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #198754; /* نفس لون Bootstrap success */
-}

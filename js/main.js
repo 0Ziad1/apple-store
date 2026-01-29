@@ -4,14 +4,6 @@
 // ----------------------
 const products = [
     { id: 1, name: 'Sparkle Pack', description: '10 Premium Sparkle Stickers', price: 9.99, emoji: '✨', category: 'cute' },
-    { id: 1, name: 'Sparkle Pack', description: '10 Premium Sparkle Stickers', price: 9.99, emoji: '✨', category: 'cute' },
-    { id: 1, name: 'Sparkle Pack', description: '10 Premium Sparkle Stickers', price: 9.99, emoji: '✨', category: 'cute' },
-    { id: 1, name: 'Sparkle Pack', description: '10 Premium Sparkle Stickers', price: 9.99, emoji: '✨', category: 'cute' },
-    { id: 1, name: 'Sparkle Pack', description: '10 Premium Sparkle Stickers', price: 9.99, emoji: '✨', category: 'cute' },
-    { id: 1, name: 'Sparkle Pack', description: '10 Premium Sparkle Stickers', price: 9.99, emoji: '✨', category: 'cute' },
-    { id: 1, name: 'Sparkle Pack', description: '10 Premium Sparkle Stickers', price: 9.99, emoji: '✨', category: 'cute' },
-    { id: 1, name: 'Sparkle Pack', description: '10 Premium Sparkle Stickers', price: 9.99, emoji: '✨', category: 'cute' },
-    { id: 1, name: 'Sparkle Pack', description: '10 Premium Sparkle Stickers', price: 9.99, emoji: '✨', category: 'cute' },
     { id: 2, name: 'Cat Mug', description: 'Cute Cat Ceramic Mug', price: 14.99, emoji: '🐱', category: 'anime' },
     { id: 3, name: 'Rainbow Notebook', description: 'Colorful Notebook for Notes', price: 7.5, emoji: '🌈', category: 'anime' },
     { id: 4, name: 'Coffee Sticker Set', description: 'Set of 12 Coffee Stickers', price: 5.99, emoji: '☕', category: 'cute' },
@@ -46,6 +38,7 @@ const visaRadio = document.getElementById('pmVisa');
 const codRadio = document.getElementById('pmCod');
 const visaFields = document.getElementById('visaFields');
 const codNote = document.getElementById('codNote');
+const bestSellerContainer = document.getElementById('bestSellerContainer');
 
 // ----------------------
 // ADD TO CART FUNCTION
@@ -87,7 +80,7 @@ function renderCart() {
     const subtotalEl = document.getElementById('cartSubtotal');
     const totalEl = document.getElementById('cartTotal');
 
-    
+
     if (!container) return;
     container.innerHTML = '';
 
@@ -307,20 +300,7 @@ const productSizeSelect = document.getElementById('productSize');
 const increaseQtyBtn = document.getElementById('increaseQty');
 const decreaseQtyBtn = document.getElementById('decreaseQty');
 
-if (productOptionsForm) {
-    productOptionsForm.addEventListener('submit', e => {
-        e.preventDefault();
-        const name = productOptionsName.value;
-        const price = parseFloat(productOptionsBasePrice.value);
-        const quantity = parseInt(productQuantityInput.value);
-        const size = productSizeSelect.value;
-        const emoji = productOptionsImage.dataset.emoji || '✨';
 
-        addToCart(name, price, quantity, size, emoji);
-
-        bootstrap.Modal.getInstance(document.getElementById('productOptionsModal')).hide();
-    });
-}
 
 if (increaseQtyBtn && decreaseQtyBtn && productQuantityInput) {
     increaseQtyBtn.onclick = () => {
@@ -353,6 +333,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCart();
     renderCheckout();
     renderCartOffcanvas();
+    renderProducts();
+    renderBestSellers(products, 4);
+    filterAndSortProducts();
 
     const checkoutBtn = document.getElementById('checkoutButton');
     if (checkoutBtn) {
@@ -417,10 +400,6 @@ function renderProducts(productList = products) {
 }
 
 
-// Render products on page load
-document.addEventListener('DOMContentLoaded', () => {
-    renderProducts();
-});
 
 function showCartToast(message) {
     const toastEl = document.getElementById('cartToast');
@@ -491,7 +470,7 @@ function renderProductsPage(productList = products, page = 1) {
 
 function renderPagination(productList, page) {
     if (!paginationEl) return;
-    
+
     const totalPages = Math.ceil(productList.length / productsPerPage);
     let html = '';
 
@@ -515,19 +494,19 @@ function renderPagination(productList, page) {
     paginationEl.innerHTML = html;
 
     // Add click events
-paginationEl.querySelectorAll('.page-link').forEach(link => {
-    link.addEventListener('click', e => {
-        e.preventDefault();
-        const selectedPage = Number(link.dataset.page);
-        if (selectedPage >= 1 && selectedPage <= Math.ceil(products.length / productsPerPage)) {
-            currentPage = selectedPage;
-            filterAndSortProducts();
+    paginationEl.querySelectorAll('.page-link').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const selectedPage = Number(link.dataset.page);
+            if (selectedPage >= 1 && selectedPage <= Math.ceil(products.length / productsPerPage)) {
+                currentPage = selectedPage;
+                filterAndSortProducts();
 
-            // Smooth scroll to top of products
-            document.getElementById('products-grid').scrollIntoView({ behavior: 'smooth' });
-        }
+                // Smooth scroll to top of products
+                document.getElementById('products-grid').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     });
-});
 
 }
 
@@ -550,19 +529,29 @@ function filterAndSortProducts() {
     renderProductsPage(filtered, currentPage);
 }
 
-// Initial render
-document.addEventListener('DOMContentLoaded', () => {
-    filterAndSortProducts();
-});
 
 // ----------------------
 // RENDER BEST SELLER SECTION WITH NOTIFICATION & IDs
 // ----------------------
+const modalEl = document.getElementById('productOptionsModal'); // The DOM element
+const productOptionsModal = new bootstrap.Modal(modalEl);      // The Bootstrap instance
+
+document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.open-product-options');
+    if (!btn) return;
+
+    const productId = Number(btn.dataset.id);
+
+    openProductOptionsModal(productId); // populate modal
+
+    productOptionsModal.show();          // show it
+});
+
+
 function renderBestSellers(productList = products, maxItems = 4) {
     if (!bestSellerContainer) return;
     bestSellerContainer.innerHTML = '';
 
-    // Take first `maxItems` products for best sellers
     const bestSellers = productList.slice(0, maxItems);
 
     bestSellers.forEach(p => {
@@ -573,37 +562,19 @@ function renderBestSellers(productList = products, maxItems = 4) {
                         <h5 class="card-title">${p.emoji} ${p.name}</h5>
                         <p class="card-text text-muted">${p.description}</p>
                         <strong class="mb-3">$${p.price.toFixed(2)}</strong>
-                        <button class="btn btn-primary btn-add-to-cart mt-auto"
-                            data-id="${p.id}"
-                            data-name="${p.name}"
-                            data-price="${p.price}"
-                            data-emoji="${p.emoji}">
-                            <i class="bi bi-cart-plus me-2"></i>Add to Cart
+                        <button class="btn btn-primary open-product-options mt-auto"
+                            data-id="${p.id}">
+                            Choose options
                         </button>
                     </div>
                 </div>
             </div>
         `);
     });
-
-    // Reattach Add to Cart buttons with notifications
-    bestSellerContainer.querySelectorAll('.btn-add-to-cart').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = Number(btn.dataset.id);
-            const name = btn.dataset.name;
-            const price = parseFloat(btn.dataset.price);
-            const emoji = btn.dataset.emoji || '✨';
-
-            addToCart(name, price, 1, '', emoji); // add to cart
-            showCartToast(`✅ ${emoji} 1x ${name} added to cart`); // show notification
-        });
-    });
 }
 
-// Call after DOM loaded
-document.addEventListener('DOMContentLoaded', () => {
-    renderBestSellers(products, 4); // you can adjust maxItems here
-});
+
+
 
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
@@ -638,3 +609,68 @@ searchInput.addEventListener("input", () => {
     const filtered = products.filter(p => p.name.toLowerCase().includes(query));
     renderSearchResults(filtered);
 });
+
+
+
+
+
+const productOptionsModalEl = document.getElementById('productOptionsModal');
+
+const productOptionsModalLabel = document.getElementById('productOptionsModalLabel');
+const productOptionsCategory = document.getElementById('productOptionsCategory');
+const productOptionsPrice = document.getElementById('productOptionsPrice');
+
+const productOptionsCategoryInput = document.getElementById('productOptionsCategoryInput');
+
+
+
+// Function to open modal and populate data
+function openProductOptionsModal(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    // Update modal display
+    productOptionsModalLabel.textContent = product.name;
+    productOptionsCategory.textContent = `Category: ${product.category}`;
+    productOptionsPrice.textContent = `$${product.price.toFixed(2)}`;
+
+    // Update hidden inputs / form values
+    productOptionsName.value = product.name;
+    productOptionsBasePrice.value = product.price;
+    productOptionsCategoryInput.value = product.category;
+
+    // Reset quantity and size
+    productQuantityInput.value = 1;
+    productSizeSelect.value = '';
+
+    // Show the modal
+    productOptionsModal.show();
+}
+
+// Attach click listener using delegation for dynamically generated buttons
+document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.open-product-options');
+    if (!btn) return;
+
+    const productId = Number(btn.dataset.id);
+    openProductOptionsModal(productId);
+});
+
+
+productOptionsForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const name = productOptionsName.value;
+    const category = productOptionsCategoryInput.value;
+    const price = parseFloat(productOptionsBasePrice.value);
+    const quantity = parseInt(productQuantityInput.value);
+    const size = productSizeSelect.value;
+
+    addToCart(name, price, quantity, size, '✨'); // add to cart
+    showCartToast(`✅ ${quantity}x ${name} added to cart`);
+
+    productOptionsModal.hide(); // hide modal safely
+});
+
+
+

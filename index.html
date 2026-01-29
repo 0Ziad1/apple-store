@@ -305,29 +305,32 @@
     <div class="modal fade" id="productOptionsModal" tabindex="-1" aria-labelledby="productOptionsModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content product-options-modal-content">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
                 <div class="modal-header border-0 pb-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
+                <!-- Modal Body -->
                 <div class="modal-body p-4">
                     <div class="row g-4">
-                        <div class="col-md-5">
-                            <div class="product-options-image" id="productOptionsImage">
-                                <!-- Product image will be inserted here -->
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <h3 class="modal-title mb-2" id="productOptionsModalLabel">Product Name</h3>
-                            <p class="text-muted mb-3" id="productOptionsDescription">Product description</p>
+
+                        <!-- Product Details -->
+                        <div class="col-md-12">
+                            <h3 id="productOptionsModalLabel">Product Name</h3>
+                            <p class="text-muted" id="productOptionsCategory">Category</p>
                             <div class="mb-4">
-                                <span class="price fs-4" id="productOptionsPrice">$0.00</span>
+                                <span id="productOptionsPrice" class="fs-4">$0.00</span>
                             </div>
+
                             <form id="productOptionsForm">
                                 <input type="hidden" id="productOptionsName" value="">
                                 <input type="hidden" id="productOptionsBasePrice" value="">
+                                <input type="hidden" id="productOptionsCategoryInput" value="">
 
                                 <div class="mb-3">
-                                    <label for="productSize" class="form-label fw-semibold">Size</label>
+                                    <label class="form-label fw-semibold" for="productSize">Size</label>
                                     <select class="form-select form-select-sm" id="productSize" required>
                                         <option value="">Choose an option</option>
                                         <option value="small">Small</option>
@@ -337,13 +340,13 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="productQuantity" class="form-label fw-semibold">Quantity</label>
+                                    <label class="form-label fw-semibold" for="productQuantity">Quantity</label>
                                     <div class="input-group input-group-lg">
-                                        <button class="btn btn-outline-secondary" type="button"
+                                        <button type="button" class="btn btn-outline-secondary"
                                             id="decreaseQty">-</button>
-                                        <input type="number" class="form-control text-center" id="productQuantity"
-                                            value="1" min="1" max="99" required>
-                                        <button class="btn btn-outline-secondary" type="button"
+                                        <input type="number" id="productQuantity" class="form-control text-center"
+                                            value="1" min="1" max="99">
+                                        <button type="button" class="btn btn-outline-secondary"
                                             id="increaseQty">+</button>
                                     </div>
                                 </div>
@@ -353,11 +356,14 @@
                                 </button>
                             </form>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+
 
     <!-- Cart Modal -->
     <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
@@ -407,7 +413,7 @@
         </div>
     </div>
 
-        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="cartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <i class="bi bi-check-circle-fill text-success me-2"></i>
@@ -420,7 +426,7 @@
         </div>
     </div>
 
-    
+
 
     <footer class="footer py-3" id="contact">
         <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
@@ -462,6 +468,11 @@
             &copy; 2026 Apple Store. All rights reserved.
         </div>
     </footer>
+    <script>
+        // Get modal elements
+
+
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
